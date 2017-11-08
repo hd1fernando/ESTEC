@@ -1,104 +1,135 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ESTEC - Formulário</title>
+    <title>Estec</title>
 
     <link href="test.css" rel="stylesheet">
 
   </head>
-  <body>
 
-    <main>
 
-    <form action="/pagina-processa-dados-do-form" method="post">
+
+  <body class="FundoFormulario">
+
+
+    <main class="MainFormulario">
+
+
+
+    <form class="Formulario" action="/pagina-processa-dados-do-form" method="post">
+            <div class="SubTitituloFormulario" dir="auto" role="heading" >Clínica Estética UNA Barro Preto</div>
+
+
+            <div class="ApresentacaoFormulario" dir="auto">A Clínica de Estética do Campus Una Barro Peto veio para revolucionar o conceito de beleza e aproximar o centro universitário da comunidade.</div>
     
     <div class="DadosPessoais">
 
-        <div class="Nome">
-            <label for="name">Nome:</label><span class="">*</span>
-            <input type="text" id="name"/>
+          <div>
+              <label for="name">Nome:</label><span class="<span class="Asterisk" aria-hidden="true">*</span>
+              <input type="text" id="name"/>
 
 
-        </div>
+          </div>
     
-    <div>
-        <label for="idade">Idade:</label><span class="">*</span> 
-        <input type="number" id="idade" />
+          <div>
+              <label for="idade">Idade:</label><span class="<span class="Asterisk" aria-hidden="true">*</span> 
+              <input type="number" id="idade" />
 
-    </div>
+          </div>
 
    
-    <div>
-        <label for="mail">E-mail:</label> 
-        <input type="email" id="mail" />
-    </div>
+          <div>
+              <label for="mail">E-mail:</label> 
+              <input type="email" id="mail"/>
+          </div>
 
-    <div>
-        <label for="tel">Tel:</label><span class="">*</span>
-        <input type="tel" id="tel" />     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <div>
+              <label for="tel">Tel:</label><span class="<span class="Asterisk" aria-hidden="true">*</span>
+              <input type="tel" id="tel" />     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-        <label for="cel">Cel:</label><span class="">*</span>
-        <input type="tel" id="cel" />
+              <label for="cel">Cel:</label><span class="<span class="Asterisk" aria-hidden="true">*</span>
+              <input type="tel" id="cel" />
 
-    </div>
+          </div>
 
-        </div>
+      </div>
     
    
 
     <div class="Horario">
 
-       <h2>Data e hora disponíveis:</h2>
+         <h2>Data e hora disponíveis:</h2>
 
-       <input type="checkbox" class="largerCheckbox" name ="horario" value="">  07:30<br>
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   09:30<br>
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   12:00<br>
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   13:00<br>
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   14:00<br>
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   15:00<br>
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   16:00<br>
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   17:00<br>
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   19:00<br>
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   21:00<br>       
-       <input type="checkbox" class="largerCheckbox" name="horario" value="">   Todos os horários acima<br>
+         <div class="HorarioCheck">
+
+               <input type="checkbox" class="HorarioCheck" name ="horario1" value="">  07:30<br>
+               <input type="checkbox" class="HorarioCheck" name="horario2" value="">   09:30<br>
+               <input type="checkbox" class="HorarioCheck" name="horario3" value="">   12:00<br>
+               <input type="checkbox" class="HorarioCheck" name="horario4" value="">   13:00<br>
+               <input type="checkbox" class="HorarioCheck" name="horario5" value="">   14:00<br>
+               <input type="checkbox" class="HorarioCheck" name="horario6" value="">   15:00<br>
+               <input type="checkbox" class="HorarioCheck" name="horario7" value="">   16:00<br>
+               <input type="checkbox" class="HorarioCheck" name="horario8" value="">   17:00<br>
+               <input type="checkbox" class="HorarioCheck" name="horario9" value="">   19:00<br>
+               <input type="checkbox" class="HorarioCheck" name="horario10" value="">  21:00<br>       
+               <input type="checkbox" class="HorarioCheck" name="horario11" value="">  TODOS OS HORÁRIOS ACIMA<br>
+
+        </div>
 
     </div>
 
 
    
 
-    <div class="Servico">
+    <div class="Servicos">
 
-        <h2>Serviço:</h2>
 
-        <input type="radio" name="service" value=""   checked> TRATAMENTO FACIAL (RUGAS, ACNE, PÓS-OPERATÓRIO, ETC)<br>
-        <input type="radio" name="service" value=""   checked> SOBRANCELHA<br>
-        <input type="radio" name="service" value=""   checked> MAQUIAGEM<br>
-        <input type="radio" name="service" value=""   checked> TRATAMENTO CORPORAL (CELULITE, ESTRIA, ETC)<br>
-        <input type="radio" name="service" value=""   checked> MASSAGENS RELAXANTES<br>
-        <input type="radio" name="service" value=""   checked> TRATAMENTO CAPILAR<br>
-        <input type="radio" name="service" value=""   checked> ESCOVA<br>
-        <input type="radio" name="service" value=""   checked> CORTE<br>
-        <input type="radio" name="service" value=""   checked> COLORAÇÃO<br>
-        <input type="radio" name="service" value=""   checked> MECHAS, LUZES, OMBRE HAIR, ETC.<br>
-        <input type="radio" name="service" value=""   checked> ALISAMENTO (PROGRESSIVAS E RELAXAMENTO)<br>
+                <h2>Serviços:</h2>
 
+                <div class="ServicosCheck">
+
+                <input type="checkbox" class="ServicosCheck" name="service1" value="" >TRATAMENTO FACIAL (RUGAS, ACNE, PÓS-OPERATÓRIO, ETC)<br>
+                <input type="checkbox" class="ServicosCheck" name="service2" value=""   > SOBRANCELHA<br>
+                <input type="checkbox" class="ServicosCheck" name="service3" value=""   > MAQUIAGEM<br>
+                <input type="checkbox" class="ServicosCheck" name="service4" value=""   > TRATAMENTO CORPORAL (CELULITE, ESTRIA, ETC)<br>
+                <input type="checkbox" class="ServicosCheck" name="service5" value=""   > MASSAGENS RELAXANTES<br>
+                <input type="checkbox" class="ServicosCheck" name="service6" value=""   > TRATAMENTO CAPILAR<br>
+                <input type="checkbox" class="ServicosCheck" name="service7" value=""   > ESCOVA<br>
+                <input type="checkbox" class="ServicosCheck" name="service8" value=""   > CORTE<br>
+                <input type="checkbox" class="ServicosCheck" name="service9" value=""   > COLORAÇÃO<br>
+                <input type="checkbox" class="ServicosCheck" name="service10" value=""  > MECHAS, LUZES, OMBRE HAIR, ETC.<br>
+                <input type="checkbox" class="ServicosCheck" name="service11" value=""  > ALISAMENTO (PROGRESSIVAS E RELAXAMENTO)<br>
+
+                </div>
 
     </div>
 
 
 
-    <div class="button">
-        <button type="submit">Cadastrar</button>
+    <div class="ButtonCadastrar">
+        <button type="submit" id="idbotaoCadastrar"  name="botaoCadastrar">Cadastrar</button>
     </div>
+
+
+
+
+
+
 
     <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=mpcovjg61agdeprn5lf3424jog%40group.calendar.google.com&amp;color=%235229A3&amp;ctz=America%2FFortaleza" style="border-width:0" width="400" height="300" frameborder="0" scrolling="no"></iframe>
 
 
       <input type="date" name="Data" value="">
+
+      <iframe src="https://exemplo-7dfa7.firebaseapp.com/" width="260" height="250" frameborder="0"></iframe>
+
+
+<div id="calendar"></div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+
     
 
 

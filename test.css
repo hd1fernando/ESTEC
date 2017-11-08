@@ -1,4 +1,15 @@
-form {
+main.MainFormulario{
+	margin-top: 250px;
+		font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+
+
+
+}
+
+
+form.Formulario {
+
+	margin-top: -1000px;
    /* Apenas para centralizar o form na página */
     margin: 0 auto;
     width: 1000px;
@@ -6,53 +17,82 @@ form {
     padding: 1em;
     border: 1px solid #CCC;
     border-radius: 1em;
+    background-color: white;
+    box-shadow: black 0.01em 0.1em 2.2em;
 }
 
-input[type=text]{   
+.FundoFormulario{
 
-    box-shadow: 1px 1px 2px #333333;    
-    -moz-box-shadow: 1px 1px 2px #333333;
-    -webkit-box-shadow: 1px 1px 2px #333333;
-    border:1px solid #000000;
-    width:550px;
-    height: 20px;
-    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+	background: url(fundo.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	
+}
+.SubTitituloFormulario{
+
+	font-family: Monotype Corsiva, sans-serif;
+    font-size: 3.125em;
+    color: #01baf2;
+    font-weight: 100;
+    text-align: center;
+    margin: 32px 0 0 0;
+    line-height: 50px;	
+    font-weight: bold; 
+    text-shadow: black 0.01em 0.1em 0.2em;
+}
+
+input {
+
+	padding: 3px;
 
 }
 
-input[type=email]{
+.DadosPessoais {
+
+	display: inline-block;
+	margin-top: 50px;
+	margin-left: 50px;
+}
+
+input:not([type='checkbox']) { 
+
+/* todos inputs recebem, exceto checkbox 
+********************************************
+
+ignora> [type=text], input[type=number], input[type=email], input[type=tel], input[type=password]  */
+
 	box-shadow: 1px 1px 2px #333333;    
     -moz-box-shadow: 1px 1px 2px #333333;
-    -webkit-box-shadow: 1px 1px 2px #333333;
+    -webkit-box-shadow: 2px 1px 2px #333333;
     border:1px solid #000000;
-    width:550px;
     height: 20px;
-    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-    float: right;
+   
+}
+
+.DadosPessoais input[type=text]{   
+
+    width:550px;
+
+}
+
+.DadosPessoais input[type=email]{
+
+    width:550px;
     text-align: 1px;
+    margin-left: 8px;
     
 }
 
-input[type=number]{
+.DadosPessoais input[type=number]{
 
-	box-shadow: 1px 1px 2px #333333;    
-    -moz-box-shadow: 1px 1px 2px #333333;
-    -webkit-box-shadow: 1px 1px 2px #333333;
-    border:1px solid #000000;
     width:60px;
-    height: 20px;
-    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+
 }
 
-input[type=tel]{
+.DadosPessoais input[type=tel]{
 
-	box-shadow: 1px 1px 2px #333333;    
-    -moz-box-shadow: 1px 1px 2px #333333;
-    -webkit-box-shadow: 1px 1px 2px #333333;
-    border:1px solid #000000;
     width:160px;
-    height: 20px;
-    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
 
 }
 
@@ -70,32 +110,25 @@ form div + div {
 
 
 input:focus {
-    border-color: #000;
+    border-color: #000;	
 }
 
 
 .Horario {
 	margin-left: 50px;
 	margin-top: 80px;
-
+    font-size: 15px;
     
 }
 
-.DadosPessoais {
 
-	 display: inline-block;
-	margin-top: 50px;
-	margin-left: 50px;
-
-}
-
-.Servico {
-	margin-left: 490px;
-	margin-top: -461px;
+.Servicos {
+	margin-left: 470px;
+	margin-top: -459px;
+    font-size: 15px;
 
 }
 h2 {
-
 }
 
 span {
@@ -103,75 +136,100 @@ span {
 	font-size: 20px;
 }
 
-input[type='radio'] {
--webkit-box-shadow: inset 0 1px 2px white, 0 1px 2px rgba(0, 0, 0, .2);
--webkit-appearance: none;
--webkit-margin-start: 0;
--webkit-margin-end: 10px;
--webkit-transition: border 500ms;
-background: -webkit-linear-gradient(#fafafa, #dcdcdc);
-border-radius: 100%;
-border: 1px solid #a0a0a0;
-display: inline-block;
-height: 25px;
-margin-bottom: 0;
-position: relative;
-top: 5px;
-vertical-align: baseline;
-width: 25px;
-}
 
-input[type='radio']:disabled {
-opacity: .75;
-}
-input[type='radio']:not(:disabled):not(:active):hover {
-background: -webkit-linear-gradient(#fff, #e6e6e6);
-text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
-}
-input[type='radio']:not(:disabled):active {
--webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
-background: -webkit-linear-gradient(#f0f0f0, #bebebe);
-border: 1px solid #808080;
-text-shadow: 0 1px 0 rgba(255, 255, 255, .25);
-}
-input[type='radio']:checked::before {
--webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5);
--webkit-margin-start: 4px;
-background: #808080;
-border-radius: 10px;
-content: '';
-display: inline-block;
-font-size: 13px;
-font-weight: 400;
-height: 15px;
-left: 0;
-margin-top: 4px;
-opacity: 1;
-position: absolute;
-top: 0;
-vertical-align: top;
-width: 15px;
-}
-html[dir='rtl'] input[type='radio']:checked::before {
-right: 0;
-}
-input[type='radio']:active:checked::before {
-background: #606060;
-}
-
-input.largerCheckbox {
-vertical-align: -9px;
-
+input.HorarioCheck, input.ServicosCheck {
+	vertical-align: -9px;
 	width: 30px;
 	height: 30px;
 }
 
-.button {
+.ButtonCadastrar {
     margin-top:10%;
 	margin-left:45%;
 }
 
 
+/* *************************** Login *********************** */
+
+
+main.MainLogin{
+	margin-top: 150px;
+		font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+
+}
+
+form.Login {
+	
+	margin: 0 auto;
+
+   /* Apenas para centralizar o form na página */
+    width: 200px;
+    /* Para ver as bordas do formulário */
+    padding: 6em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: black 0.01em 0.1em 2.2em;
+
+
+}
+
+.LoginProfessor input {
+
+	width:200px;
+
+
+
+}
+
+form.Login input {
+
+}
+
+
+
+.ButtonEntrar {
+    /* Para posicionar os botões para a mesma posição dos campos de texto */
+    padding-left: 50%; /* mesmo tamanho que os elementos do tipo label */
+    margin-left:-1.5em;
+    position: absolute;
+	top: 380px;
+	right: 575px;
+}
+a{
+
+	color: #666;
+	font-size: 70%;
+	position: absolute;
+	top: 389px;
+	left: 584px;
+	z-index:1
+
+}
+
+a:link, a:visited {
+	text-decoration: none
+	}
+a:hover {
+	text-decoration: underline; 
+	color: #f00
+	}
+a:active {
+	text-decoration: none
+	}
+
+/*
+
+a{
+
+	color: #666;
+	font-size: 70%;
+	position: absolute;
+	top: 389px;
+	right: 665px;
+	
+	
+}
 
 
 
