@@ -2,11 +2,7 @@
 $servername = "localhost";
 $username = "estec";
 $password = "estec";
+$database = "estec";
 
-$conn = mysqli_connect($servername, $username, $password);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
-?> 
+$conn = mysqli_connect($servername, $username, $password, $database);
+?>

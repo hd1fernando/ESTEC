@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>Estec</title>
-	<link href="test.css" rel="stylesheet">
+	<link href="test.css" rel="stylesheet"/>
 	<style type="text/css">
 		a:link, a:visited {
 			text-decoration: none
@@ -18,10 +18,36 @@
 			text-decoration: none
 		}
 	</style>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> 
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		$("#formLogin").submit(function() {
+		var usuario = document.getElementById("usuario").value;
+		var password = document.getElementById("password").value;
+		var functionName = "realizaLogin";
+		if(usuario == "" || password == ""){
+			alert("Campo usuário e senha são obrigatórios.");
+		} else{
+			$.ajax({
+				type: "POST",
+				url: "login.php",
+				data: {functionName: functionName, usuario: usuario, password: password},
+				success: function(dado){
+					dado = dado.split("&");
+					if(dado[0] == "") alert("Usuário não encontrado.");
+					else alert("Bem-vindo.")
+				}
+			});
+			return false;
+		}
+	});
+		});
+	</script>
 </head>
 <body>
 <main class="MainLogin">
-	<form class="Login" action="/pagina-processa-dados-do-form" method="post">
+	<form id="formLogin" class="Login" action="" method="post">
 		<div class="LoginProfessor">
 			<div>
 				<label for="usuario">Usuário:</label>
