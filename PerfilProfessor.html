@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Estec</title>
+
+        <link href="perfilTest.css" rel="stylesheet">
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <script src="jQuery.js"></script>
+        <script src="estilos.js"></script>
+
+        <style>
+            /*os estilos abaixo se aplicam ao menu do site*/
+            .menu {
+                list-style-type:none; 
+                display: none;
+            }
+            .menu i{
+                display:inline;
+            }
+            ul.menu{
+                margin: 0;
+                padding: 1px;
+                border: 1px solid;
+
+            }
+            .menu a{
+                text-decoration: none;
+                color: black;
+                width: 80%;
+                float:right;
+                text-align: left;
+                padding: 0; 
+                margin-left: 0;
+                font-size: 25px;
+            }
+            .btn_menu{
+                margin-left: 1px;
+            }
+            .menu li{
+                border-bottom:  1px solid;
+                margin: 0;
+                padding: 3px;
+            }
+            .menu li:hover{
+                color: white;
+            }
+            .menu li:last-child{
+                border-bottom: none;
+            }
+            .menu li:hover{
+                background-color: red;
+                cursor: pointer;
+            }
+            .menu li a:hover{
+                color: white;
+            }
+
+            .btn_menu:hover{
+                cursor: pointer;
+                width: 25%;
+            }
+            .acess{
+                width: 25%;
+                position: absolute;
+                z-index: 3;
+                background-color: white;
+            }
+            hr{
+                margin: 0;
+                padding: 0;
+            }
+            .top_bar{
+                background-color: red;
+
+
+            }
+            header{
+                position: relative;
+                top:0px;
+                left: 0px;
+                width: 100%;
+            }
+
+            .concerto {
+                height: 100%;
+                overflow: auto;
+                width: 100%;
+            }
+            
+
+            
+        </style>
+
+    </head>
+
+
+
+    <body class="">
+        <div class="top_bar">
+            <i id="#menu" class="fa fa-bars fa-4x btn_menu" aria-hidden="true" onclick="ola()"></i>
+        </div>
+        <hr>
+        <div class="acess">
+            <ul class="menu">
+                <li><i class="fa fa-cogs fa-2x" aria-hidden="true"></i><a href="#">Triagem</a></li>
+                <li><i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i><a href="#">Aluno</a></li>
+                <li><i class="fa fa-users fa-2x" aria-hidden="true"></i><a href="#">Turma</a></li>
+                <li><i class="fa fa-user fa-2x" aria-hidden="true"></i><a href="#">Cliente</a></li>
+                <li><i class="fa fa-commenting fa-2x" aria-hidden="true"></i><a href="#">Feedback</a></li>
+                <li><i class="fa fa-calendar fa-2x" aria-hidden="true"></i><a href="#"> Calendario</a></li>
+            </ul>
+        </div>
+
+        <header>
+            <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
+            <img src="http://www.lorempixel.com/300/300/animals" alt="usuario" />
+            <h1 class="NomeUser">Nome</h1>
+        </header>
+
+        <main class="PPDefault">
+
+            <div class="DefaultTurma">
+                <div class="b">
+                    <label>Turma</label>  					
+                </div>
+            </div>
+
+
+            <div class="DefaultCalendario">
+                <div class="b">	
+                    <label>Calendário</label>   		
+                </div>
+
+                <input type="date" name="Calend" id='Calend' value="">
+
+
+                <!-- *****JavaScript Set data no calendario ****** -->
+
+                <script language=javascript type="text/javascript">
+                    atual = new Date
+                    var mes = atual.getMonth() + 1
+                    var dataAtual = (atual.getFullYear() + "-" + mes + "-" + atual.getDate())
+                    document.getElementById('Calend').value = dataAtual
+
+                </script>
+
+
+                <!--  *********************************************** -->
+
+            </div>
+
+            <div class="DefaultNS">
+                <div class=" concerto">
+                    <label>NS</label>   	
+
+                    <div class="TabelaNS">
+                        <table>
+                            <tr>
+                                <td>Thiago Henrique wwww 1 2 3 4 5 6 7 8 9 0da Silva</td>
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                            </tr>
+                            <tr>
+                                <td>Thiago Henrique da Silva</td>
+
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+
+                            </tr>
+                            <tr>
+                                <td>Thiago Henrique da Silva</td>
+
+                            </tr>
+                            <tr>
+                                <td>Centro comercwwwwwwwwwwwwwwwial Moctezuma</td>
+
+                            </tr>
+                            <tr>
+                                <td>Thiago Henrique da Silva</td>
+
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+
+                            </tr>
+                            <tr>
+                                <td>Thiago Henrique da Silva</td>
+
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+
+                            </tr>
+                            <tr>
+                                <td>Thiago Henrique da Silva</td>
+
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+
+                            </tr>
+                            <tr>
+                                <td>Thiago Henrique da Silva</td>
+
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+
+    </body>
+
+
+
+</html>
