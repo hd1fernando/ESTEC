@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Estec</title>
 
-        <link href="perfilTest.css" rel="stylesheet">
+        <link href="css/perfilTest.css" rel="stylesheet">
         <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/estilos.js"></script>
@@ -154,8 +154,11 @@
 
         <header>
             <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
-            <img src="SemFotoUsuario.PNG" alt="usuario" />
+            <img src="img/admin.jpg" alt="usuario" />
             <h1 class="NomeUser">Nome</h1>
+			<input type="hidden" id="idProfessor"/>
+			<input type="hidden" id="loginUsuario"/>
+			<input type="hidden" id="nomeUsuario"/>
         </header>
 
         <main class="PPDefault">
@@ -247,22 +250,9 @@
                 <div class="NomeTabela">	
                     <label>Calendário</label>   		
                 </div>
-
+				
+				<!-- *****input data no calendario ****** -->
                 <input type="date" name="Calend" id='Calend' value="">
-
-
-                <!-- *****JavaScript Set data no calendario ****** -->
-
-                <script language=javascript type="text/javascript">
-                    atual = new Date
-                    var mes = atual.getMonth() + 1
-                    var dataAtual = (atual.getFullYear() + "-" + mes + "-" + atual.getDate())
-                    document.getElementById('Calend').value = dataAtual
-                </script>
-
-
-                <!--  *********************************************** -->
-
             </div>
 
             <div class="DefaultNS">
@@ -346,16 +336,6 @@
                     </table>
                 </div>
             </div>
-
-
-
         </main>
-
-
-
-
     </body>
-
-
-
 </html>
