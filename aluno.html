@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/estilos.js"></script>
+        <link href="perfilTest.css" rel="stylesheet">
+
+        <style>
+            /* Os estilos abaixo se aplicam as tabelas*/
+            .tabela_aluno, .tabela_cliente, .tabela_turma {
+                border-collapse: collapse;
+            }
+            .nav_barra i{
+                float: right;
+                
+            }
+            
+            .nav_barra input{
+                float: right;
+                margin: 0px;
+            }
+
+            #div_cliente, #div_turma {
+                display: none;
+            }
+
+            tr td{
+                border: 1px solid black;
+            }
+
+            tbody tr:nth-child(odd){
+                background-color: yellow;
+            }
+            tbody tr:nth-child(even){
+                background-color: grey;
+            }
+            tbody tr:hover{
+                background-color: red;
+                color: white;
+            }
+            .btn{
+                cursor: pointer;
+                border: 1px solid black;
+                border-bottom: none;
+
+                margin: 0;
+            }
+            .nav_barra{
+                padding: 0px;
+                margin: 0px;
+            }
+            .div_user{
+                border: 1px solid black;
+                margin: 0px;
+            }
+            .tabelas{
+                margin-top: 170px;
+                margin-left: 50px;
+                margin-right: 50px;
+            }
+
+            /*os estilos abaixo se aplicam ao menu do site*/
+            .menu {
+                list-style-type:none; 
+                display: none;
+
+            }
+            .menu i{
+                display:inline;
+            }
+            ul.menu{
+                margin: 0;
+                padding: 1px;
+                border: 1px solid;
+            }
+            .menu a{
+                text-decoration: none;
+                color: black;
+                width: 80%;
+                float:right;
+                text-align: left;
+                padding: 0; 
+                margin-left: 0;
+                font-size: 25px;
+            }
+            .btn_menu{
+                margin-left: 1px;
+            }
+            .menu li{
+                border-bottom:  1px solid;
+                margin: 0;
+                padding: 3px;
+            }
+            .menu li:hover{
+                color: white;
+            }
+            .menu li:last-child{
+                border-bottom: none;
+            }
+            .menu li:hover{
+                background-color: red;
+                cursor: pointer;
+            }
+            .menu li a:hover{
+                color: white;
+            }
+            .btn_menu:hover{
+                cursor: pointer;
+                width: 25%;
+            }
+            .acess{
+                width: 25%;
+                position: absolute;
+                z-index: 3;
+                background-color: white;
+                margin-top: 4em;
+                position: fixed;
+            }
+            hr{
+                margin: 0;
+                padding: 0;
+            }
+            .top_bar{
+                background-color: red;
+                position: fixed;
+                width: 100%;
+            }
+
+
+            .concerto {
+                height: 100%;
+                overflow: auto;
+                width: 100%;
+            }
+        </style>
+        <script>
+            function show(show, hide1, hide2, value) {
+                $(hide1).hide();
+                $(show).show();
+                $(hide2).hide();
+                $("#pesquisa").attr("placeholder", "pesquisar por " + value);
+            }
+        </script>
+    </head>
+    <body>
+        <div class="top_bar">
+            <i id="#menu" class="fa fa-bars fa-4x btn_menu" aria-hidden="true" onclick="ola()"></i>
+        </div>
+        <hr>
+        <div class="acess">
+            <ul class="menu">
+                <li><i class="fa fa-cogs fa-2x" aria-hidden="true"></i><a href="#">Triagem</a></li>
+                <li><i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i><a href="#">Aluno</a></li>
+                <li><i class="fa fa-users fa-2x" aria-hidden="true"></i><a href="#">Turma</a></li>
+                <li><i class="fa fa-user fa-2x" aria-hidden="true"></i><a href="#">Cliente</a></li>
+                <li><i class="fa fa-commenting fa-2x" aria-hidden="true"></i><a href="#">Feedback</a></li>
+                <li><i class="fa fa-calendar fa-2x" aria-hidden="true"></i><a href="#"> Calendario</a></li>
+            </ul>
+        </div>
+
+        <header>
+            <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
+            <img src="SemFotoUsuario.PNG" alt="usuario" />
+            <h1 class="NomeUser">Nome</h1>
+        </header>
+
+        <div class="tabelas">
+            <div class="nav_barra">
+                <span id="btn_aluno" class="btn" onclick="show('#div_aluno', '#div_turma', '#div_cliente', 'aluno')">Aluno</span>
+                <span id="btn_cliente" class="btn" onclick="show('#div_cliente', '#div_turma', '#div_aluno', 'cliente')">Cliente</span>
+                <span id="btn_turma" class="btn" onclick="show('#div_turma', '#div_aluno', '#div_cliente', 'turma')">Turma</span>
+                <input type="search" id="pesquisa" placeholder="pesquisar por aluno">
+                <i class="fa fa-search" aria-hidden="true"></i>
+
+            </div>
+            <div id="div_aluno" class="div_user">
+                <table class="tabela_aluno">
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Turma</td>
+                            <td>Contato</td>
+                            <td>Cliente</td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fernando</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <i class="fa fa-user-times" aria-hidden="true"></i>
+                            </td>
+                            <td>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="options">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                </div>
+            </div>
+
+            <div id="div_cliente" class="div_user">
+                <table class="tabela_cliente">
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Contato</td>
+                            <td>Aluno</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fernando</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <i class="fa fa-user-times" aria-hidden="true"></i>
+                            </td>
+                            <td>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="options">
+
+                </div>
+            </div>
+
+            <div id="div_turma" class="div_user">
+                <table class="tabela_turma">
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Quantidade Alunos</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SBPN02/2017</td>
+                            <td></td>
+                            <td>
+                                <i class="fa fa-user-times" aria-hidden="true"></i>
+                            </td>
+                            <td>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="options">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
