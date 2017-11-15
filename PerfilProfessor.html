@@ -1,64 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Estec</title>
 
-        <link rel="stylesheet" href="css/perfilTest.css"/>
-        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"/>
-        
-		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="estilos.js"></script>
-		<script type="text/javascript">
-			atual = new Date;
+        <link href="perfilTest.css" rel="stylesheet">
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/estilos.js"></script>
+        <script type="text/javascript">
+            atual = new Date;
             var mes = atual.getMonth() + 1;
             var dataAtual = (atual.getFullYear() + "-" + mes + "-" + atual.getDate());
             document.getElementById('Calend').value = dataAtual;
-		</script>
-		
-		<script type="text/javascript">
-		$(document).ready(function () {
-			var value = window.location.href.substring(window.location.href.lastIndexOf('?') + 1);
-			value = value.split("+");
-			
-			
-			
-			$(".NomeUser").html(value[2]);
-			
-			$("#idProfessor").val(value[0]);
-			$("#loginUsuario").val(value[1]);
-			$("#nomeUsuario").val(value[2]);
-			
-			$.ajax({
-				type: "POST",
-                url: "turma.php",
-                data: {functionName: "listaTurma", idProfessor: $("#idProfessor").val()},
-                success: function (data) {
-					if (data[0] == "") alert("Turma não encontrada.");
-							else{
-								data = JSON.parse(data.split("&"));
-								
-								$( ".TabelaTurma" ).append("<table></table>");
-								for(var i = 0; i < data.length; i++){
-								
-									var d = data[i].split(",");
-									
-									$(".TabelaTurma table").append( "<tr><td>"+d[0]+", "+d[1]+"</td></tr>" );
-									
-								}
-							}
-                }
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var value = window.location.href.substring(window.location.href.lastIndexOf('?') + 1);
+                value = value.split("+");
+
+
+
+                $(".NomeUser").html(value[2]);
+
+                $("#idProfessor").val(value[0]);
+                $("#loginUsuario").val(value[1]);
+                $("#nomeUsuario").val(value[2]);
+
+                $.ajax({
+                    type: "POST",
+                    url: "turma.php",
+                    data: {functionName: "listaTurma", idProfessor: $("#idProfessor").val()},
+                    success: function (data) {
+                        if (data[0] == "")
+                            alert("Turma não encontrada.");
+                        else {
+                            data = JSON.parse(data.split("&"));
+
+                            $(".TabelaTurma").append("<table></table>");
+                            for (var i = 0; i < data.length; i++) {
+
+                                var d = data[i].split(",");
+
+                                $(".TabelaTurma table").append("<tr><td>" + d[0] + ", " + d[1] + "</td></tr>");
+
+                            }
+                        }
+                    }
+                });
             });
-		 });
-		</script>
+        </script>
+
         <style>
             /*os estilos abaixo se aplicam ao menu do site*/
-            
-			.menu {
+            .menu {
                 list-style-type:none; 
                 display: none;
+
             }
             .menu i{
                 display:inline;
@@ -67,7 +68,6 @@
                 margin: 0;
                 padding: 1px;
                 border: 1px solid;
-
             }
             .menu a{
                 text-decoration: none;
@@ -100,7 +100,6 @@
             .menu li a:hover{
                 color: white;
             }
-
             .btn_menu:hover{
                 cursor: pointer;
                 width: 25%;
@@ -110,6 +109,8 @@
                 position: absolute;
                 z-index: 3;
                 background-color: white;
+                margin-top: 4em;
+                position: fixed;
             }
             hr{
                 margin: 0;
@@ -117,27 +118,29 @@
             }
             .top_bar{
                 background-color: red;
-
-
-            }
-            header{
-                position: relative;
-                top:0px;
-                left: 0px;
+                position: fixed;
                 width: 100%;
             }
+
 
             .concerto {
                 height: 100%;
                 overflow: auto;
                 width: 100%;
             }
+
+
         </style>
+
     </head>
+
+
+
     <body class="">
         <div class="top_bar">
             <i id="#menu" class="fa fa-bars fa-4x btn_menu" aria-hidden="true" onclick="ola()"></i>
         </div>
+        <hr>
         <div class="acess">
             <ul class="menu">
                 <li><i class="fa fa-cogs fa-2x" aria-hidden="true"></i><a href="#">Triagem</a></li>
@@ -148,98 +151,211 @@
                 <li><i class="fa fa-calendar fa-2x" aria-hidden="true"></i><a href="#"> Calendario</a></li>
             </ul>
         </div>
+
         <header>
             <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
-            <img src="img/admin.jpg" alt="usuario" />
+            <img src="SemFotoUsuario.PNG" alt="usuario" />
             <h1 class="NomeUser">Nome</h1>
-			
-			<input type="hidden" id="idProfessor"/>
-			<input type="hidden" id="loginUsuario"/>
-			<input type="hidden" id="nomeUsuario"/>
         </header>
+
         <main class="PPDefault">
 
             <div class="DefaultTurma">
-                <div class="b">
-                    <label>Turma</label>
-					<div class="TabelaTurma">
-					</div>
+                <div class="NomeTabela">
+                    <label>Turma</label>  					
+                </div>
+
+                <div class="TabelaNS">
+                    <table>
+                        <tr>
+                            <td>Thiago Henrique wwww 1 2 3 4 5 6 7 8 9 0da Silva</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercwwwwwwwwwwwwwwwial Moctezuma</td>
+
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr><td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr><td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr><td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
+
             <div class="DefaultCalendario">
-                <div class="b">	
+                <div class="NomeTabela">	
                     <label>Calendário</label>   		
                 </div>
-				<!-- *****input data no calendario ****** -->
+
                 <input type="date" name="Calend" id='Calend' value="">
+
+
+                <!-- *****JavaScript Set data no calendario ****** -->
+
+                <script language=javascript type="text/javascript">
+                    atual = new Date
+                    var mes = atual.getMonth() + 1
+                    var dataAtual = (atual.getFullYear() + "-" + mes + "-" + atual.getDate())
+                    document.getElementById('Calend').value = dataAtual
+                </script>
+
+
+                <!--  *********************************************** -->
+
             </div>
 
             <div class="DefaultNS">
-                <div class=" concerto">
-                    <label>NS</label>   	
-                    <div class="TabelaNS">
-                        <table>
-                            <tr>
-                                <td>Thiago Henrique wwww 1 2 3 4 5 6 7 8 9 0da Silva</td>
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
-                            </tr>
-                            <tr>
-                                <td>Thiago Henrique da Silva</td>
+                <div class=" NomeTabela">
+                    <label>NS</label>
+                </div>   	
 
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
+                <div class="TabelaNS">
+                    <table>
+                        <tr>
+                            <td>Thiago Henrique wwww 1 2 3 4 5 6 7 8 9 0da Silva</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
 
-                            </tr>
-                            <tr>
-                                <td>Thiago Henrique da Silva</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
 
-                            </tr>
-                            <tr>
-                                <td>Centro comercwwwwwwwwwwwwwwwial Moctezuma</td>
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
 
-                            </tr>
-                            <tr>
-                                <td>Thiago Henrique da Silva</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercwwwwwwwwwwwwwwwial Moctezuma</td>
 
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
 
-                            </tr>
-                            <tr>
-                                <td>Thiago Henrique da Silva</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
 
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
 
-                            </tr>
-                            <tr>
-                                <td>Thiago Henrique da Silva</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
 
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
 
-                            </tr>
-                            <tr>
-                                <td>Thiago Henrique da Silva</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
 
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
-                            </tr>
-                        </table>
-                    </div>
+                        </tr>
+                        <tr>
+                            <td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr><td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr><td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr><td>Thiago Henrique da Silva</td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
+
+
+
         </main>
+
+
+
+
     </body>
+
+
+
 </html>
