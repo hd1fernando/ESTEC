@@ -35,10 +35,11 @@
                             data: {functionName: functionName, usuario: usuario, password: password},
                             success: function (dado) {
                                 dado = dado.split("&");
-                                if (dado[0] == "")
-                                    alert("Usuário não encontrado.");
-                                else
-                                    alert("Bem-vindo.")
+                                if (dado[0] == "") alert("Usuário não encontrado.");
+                                else{
+									var url = 'PerfilProfessor.html';
+									window.location.href = url+"?"+dado[0]+"+"+dado[1]+"+"+dado[2];
+								}
                             }
                         });
                         return false;

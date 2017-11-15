@@ -149,21 +149,15 @@ input {
 
 }
 
-.TabelaNS {
-
+.TabelaNS, .TabelaTurma {
     color: black;
     overflow: auto;
-
-
-
 }
 table{ 
     margin-top: 2.5em;
     font-size: 15px;
     border-collapse: collapse;
-
     overflow: auto;
-
 }
 
 td{
@@ -175,5 +169,4 @@ td{
 
 tr:nth-child(even) {
     background-color: #dddddd;
-
 }

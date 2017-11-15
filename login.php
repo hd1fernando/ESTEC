@@ -13,12 +13,16 @@ switch ($_POST[functionName]) {
 		$usuario = $_POST[usuario];
 		$password = $_POST[password];
 		
-		$sql = "SELECT usuario, senha FROM usuario WHERE usuario = '".$usuario."' AND senha = '".$password."'";
+		$sql = "SELECT usuario.fk_professor as 'idProfessor', usuario.usuario AS 'usuario', professor.nome AS 'nome'
+		FROM usuario 
+		INNER JOIN professor 
+		ON usuario.fk_professor = professor.id_professor
+		WHERE 1 AND usuario.usuario = '".$usuario."' AND usuario.senha = '".$password."'";
 		$res = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($res);
 		mysqli_free_result($res);
 		mysqli_close($conn);
 		
-		echo $row['usuario']."&".$row['senha'];
+		echo $row['idProfessor']."&".$row['usuario']."&".$row['nome'];
 	}
 ?>

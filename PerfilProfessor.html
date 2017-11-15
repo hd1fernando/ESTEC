@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>Estec</title>
 
-        <link href="css/perfilTest.css" rel="stylesheet">
-        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="estilos.js"></script>
-
+        <link rel="stylesheet" href="css/perfilTest.css"/>
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"/>
+        
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="estilos.js"></script>
+		<script type="text/javascript">
+			atual = new Date;
+            var mes = atual.getMonth() + 1;
+            var dataAtual = (atual.getFullYear() + "-" + mes + "-" + atual.getDate());
+            document.getElementById('Calend').value = dataAtual;
+		</script>
+		
+		<script type="text/javascript">
+		$(document).ready(function () {
+			var value = window.location.href.substring(window.location.href.lastIndexOf('?') + 1);
+			value = value.split("+");
+			
+			
+			
+			$(".NomeUser").html(value[2]);
+			
+			$("#idProfessor").val(value[0]);
+			$("#loginUsuario").val(value[1]);
+			$("#nomeUsuario").val(value[2]);
+			
+			$.ajax({
+				type: "POST",
+                url: "turma.php",
+                data: {functionName: "listaTurma", idProfessor: $("#idProfessor").val()},
+                success: function (data) {
+					if (data[0] == "") alert("Turma não encontrada.");
+							else{
+								data = JSON.parse(data.split("&"));
+								
+								$( ".TabelaTurma" ).append("<table></table>");
+								for(var i = 0; i < data.length; i++){
+								
+									var d = data[i].split(",");
+									
+									$(".TabelaTurma table").append( "<tr><td>"+d[0]+", "+d[1]+"</td></tr>" );
+									
+								}
+							}
+                }
+            });
+		 });
+		</script>
         <style>
             /*os estilos abaixo se aplicam ao menu do site*/
-            .menu {
+            
+			.menu {
                 list-style-type:none; 
                 display: none;
             }
@@ -89,20 +132,12 @@
                 overflow: auto;
                 width: 100%;
             }
-            
-
-            
         </style>
-
     </head>
-
-
-
     <body class="">
         <div class="top_bar">
             <i id="#menu" class="fa fa-bars fa-4x btn_menu" aria-hidden="true" onclick="ola()"></i>
         </div>
-        <hr>
         <div class="acess">
             <ul class="menu">
                 <li><i class="fa fa-cogs fa-2x" aria-hidden="true"></i><a href="#">Triagem</a></li>
@@ -113,49 +148,36 @@
                 <li><i class="fa fa-calendar fa-2x" aria-hidden="true"></i><a href="#"> Calendario</a></li>
             </ul>
         </div>
-
         <header>
             <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
-            <img src="http://www.lorempixel.com/300/300/animals" alt="usuario" />
+            <img src="img/admin.jpg" alt="usuario" />
             <h1 class="NomeUser">Nome</h1>
+			
+			<input type="hidden" id="idProfessor"/>
+			<input type="hidden" id="loginUsuario"/>
+			<input type="hidden" id="nomeUsuario"/>
         </header>
-
         <main class="PPDefault">
 
             <div class="DefaultTurma">
                 <div class="b">
-                    <label>Turma</label>  					
+                    <label>Turma</label>
+					<div class="TabelaTurma">
+					</div>
                 </div>
             </div>
-
 
             <div class="DefaultCalendario">
                 <div class="b">	
                     <label>Calendário</label>   		
                 </div>
-
+				<!-- *****input data no calendario ****** -->
                 <input type="date" name="Calend" id='Calend' value="">
-
-
-                <!-- *****JavaScript Set data no calendario ****** -->
-
-                <script language=javascript type="text/javascript">
-                    atual = new Date
-                    var mes = atual.getMonth() + 1
-                    var dataAtual = (atual.getFullYear() + "-" + mes + "-" + atual.getDate())
-                    document.getElementById('Calend').value = dataAtual
-
-                </script>
-
-
-                <!--  *********************************************** -->
-
             </div>
 
             <div class="DefaultNS">
                 <div class=" concerto">
                     <label>NS</label>   	
-
                     <div class="TabelaNS">
                         <table>
                             <tr>
@@ -219,12 +241,5 @@
                 </div>
             </div>
         </main>
-
-
-
-
     </body>
-
-
-
 </html>
