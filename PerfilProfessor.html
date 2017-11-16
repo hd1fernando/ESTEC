@@ -40,12 +40,11 @@
                         else {
                             data = JSON.parse(data.split("&"));
 
-                            $(".TabelaTurma").append("<table></table>");
                             for (var i = 0; i < data.length; i++) {
 
                                 var d = data[i].split(",");
 
-                                $(".TabelaTurma table").append("<tr><td>" + d[0] + ", " + d[1] + "</td></tr>");
+                                $("#tabelaTurma table").append("<tr><td>" + d[0] + ", " + d[1] + "</td></tr>");
 
                             }
                         }
@@ -168,79 +167,9 @@
                     <label>Turma</label>  					
                 </div>
 
-                <div class="TabelaNS">
+                <div class="TabelaNS" id="tabelaTurma">
                     <table>
-                        <tr>
-                            <td>Thiago Henrique wwww 1 2 3 4 5 6 7 8 9 0da Silva</td>
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercwwwwwwwwwwwwwwwial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr><td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr><td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr><td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr>
+                        
                     </table>
                 </div>
             </div>
