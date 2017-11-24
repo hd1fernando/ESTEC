@@ -1,0 +1,266 @@
+main.MainFormulario{
+	margin-top: 250px;
+		font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+
+
+
+}
+.logar {
+    margin-left: 30em;
+    margin-top: -21.5em; 
+    font-size: 15px;
+}
+
+form.Formulario {
+
+	margin-top: -1000px;
+   /* Apenas para centralizar o form na página */
+    margin: 0 auto;
+    width: 1000px;
+    /* Para ver as bordas do formulário */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: black 0.01em 0.1em 2.2em;
+}
+
+.FundoFormulario{
+
+	background: url(fundo.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	
+}
+.SubTitituloFormulario{
+
+	font-family: Monotype Corsiva, sans-serif;
+    font-size: 3.125em;
+    color: #01baf2;
+    font-weight: 100;
+    text-align: center;
+    margin: 32px 0 0 0;
+    line-height: 50px;  
+    font-weight: bold; 
+    text-shadow: black 0.01em 0.1em 0.2em;
+    
+}
+
+input {
+
+	padding: 3px;
+
+}
+
+.DadosPessoais {
+
+	display: inline-block;
+	margin-top: 50px;
+	margin-left: 15%;
+}
+
+input:not([type='checkbox']) { 
+
+/* todos inputs recebem, exceto checkbox 
+********************************************
+
+ignora> [type=text], input[type=number], input[type=email], input[type=tel], input[type=password]  */
+
+	box-shadow: 1px 1px 2px #333333;    
+    -moz-box-shadow: 1px 1px 2px #333333;
+    -webkit-box-shadow: 2px 1px 2px #333333;
+    border:1px solid #000000;
+    height: 20px;
+   
+}
+input[type=date]{
+
+    margin-top: 1.0em;
+    width: 254px;
+    text-align: center;
+    font-size: 18px;
+    font-family:"lucida grande", tahoma, verdana, arial, sans-serif;
+    font-weight: bold;
+    left: center; 
+    position: absolute; 
+    margin-left: 26%
+}
+
+.DadosPessoais input[type=text]{   
+
+    width:550px;
+
+}
+
+.DadosPessoais input[type=email]{
+
+    width:550px;
+    text-align: 1px;
+    margin-left: 8px;
+    
+}
+
+.DadosPessoais input[type=number]{
+
+    width:60px;
+
+}
+
+.DadosPessoais input[type=tel]{
+
+    width:160px;
+
+}
+
+#cel, #celtext{
+    margin-left: 1em;
+    text-align: right;
+}
+
+
+label {
+     /*Para ter certeza que todas as labels tem o mesmo tamanho e estão propriamente alinhadas */
+    display: inline-block;
+    width: 50px;
+    text-align: right;
+}
+
+form div + div {
+    margin-top: 1em;
+}
+
+
+input:focus {
+    border-color: #000;	
+}
+
+
+.Horario {
+	margin-left: 15%;
+	margin-top: 80px;
+    font-size: 15px;
+    
+}
+
+
+.Servicos {
+    font-size: 15px;
+    margin-top: 5em; 
+    margin-left: 15%;
+
+}
+h2 {
+}
+
+.Asterisk {
+	color: red;
+	font-size: 20px;
+    text-align: left;
+
+}
+
+
+input.HorarioCheck, input.ServicosCheck {
+	vertical-align: -9px;
+	width: 30px;
+	height: 30px;
+}
+
+.ButtonCadastrar {
+    margin-top:15%;
+	margin-left:45%;
+}
+
+
+/* *************************** Login *********************** */
+
+
+main.MainLogin{
+	margin-top: 150px;
+		font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+
+}
+
+form.Login {
+	margin-top: 20%;
+	margin: 0 auto;
+
+   /* Apenas para centralizar o form na página */
+    width: 200px;
+    /* Para ver as bordas do formulário */
+    padding: 6em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: black 0.01em 0.1em 2.2em;
+
+    margin-top: 25%;
+
+}
+
+.LoginProfessor input {
+
+	width:200px;
+
+
+
+}
+
+form.Login input {
+
+}
+
+.saudacao{
+    font-weight: bold;
+    position: absolute;
+    margin-left: -1.5em;
+    margin-top: -4em
+
+}
+
+
+
+.ButtonEntrar {
+    /* Para posicionar os botões para a mesma posição dos campos de texto */
+    padding-left: 50%; /* mesmo tamanho que os elementos do tipo label */
+    margin-left:-1.5em;
+    position: absolute;
+	top: 570px;
+	right: 577px;
+}
+a{
+
+	color: #666;
+	font-size: 70%;
+	position: absolute;
+	top: 579px;
+	left: 584px;
+	z-index:1
+
+}
+
+a:link, a:visited {
+	text-decoration: none
+	}
+a:hover {
+	text-decoration: underline; 
+	color: #f00
+	}
+a:active {
+	text-decoration: none
+	}
+
+
+
+
+/* -------------------- Pagina Professor --------------------- */
+
+
+
+
+
+
+
+
+

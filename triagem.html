@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Triagem</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/estilos.js"></script>
+
+    <link href="perfilTest.css" rel="stylesheet">
+
+    <style>
+    
+</style>
+</head>
+
+
+<body class="PPBody">
+    <div class="top_bar">
+        <i id="#menu" class="fa fa-bars fa-2x btn_menu" aria-hidden="true" onclick="ola()"></i>
+        <i class="fa fa-power-off fa-1x btn_sair" aria-hidden="true" onclick="logoff()" ></i>
+        <span id="Sair" onclick="logoff">Sair</span>
+
+    </div>
+    <hr>
+    <div class="acess">
+
+        <ul class="menu">
+            <li><i class="fa fa-cogs fa-1x" aria-hidden="true"></i><a href="triagem.html">Triagem</a></li>
+            <li><i class="fa fa-graduation-cap fa-1x" aria-hidden="true"></i><a href="aluno.html">Aluno</a></li>
+            <li><i class="fa fa-users fa-1x" aria-hidden="true"></i><a href="aluno.html">Turma</a></li>
+            <li><i class="fa fa-user fa-1x" aria-hidden="true"></i><a href="aluno.html">Cliente</a></li>
+            <li><i class="fa fa-commenting fa-1x" aria-hidden="true"></i><a href="feedback.html">Feedback</a></li>
+            <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><a href="PerfilProfessor.html"> Calendario</a></li>
+            <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#"> Sair</a></li>
+        </ul>
+    </div>
+
+    <header>
+     <img class="logo" src="logoEstec.PNG" alt="usuario" onclick="alterarImagem" />
+     <label>Estética e Tecnologia</label>
+     <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
+
+     <img class="FotoPerfil" src="SemFotoUsuario.PNG" alt="usuario" onclick="alterarImagem" />
+
+
+     <h1 class="NomeUser">Nome</h1>
+
+ </header>
+
+
+
+ <main class="PPDefault">
+<div class="esconder"></div>
+
+    <div class="triagem_table">
+
+        <div class="col_cliente">
+            <div class="menu_cli">
+                <label>Horário: </label>
+                <select id="hrs">
+                    <option selected> - - : - -</option>
+                    <option> 07:30</option>
+                    <option> 09:30</option>
+                    <option> 12:00</option>
+                    <option> 13:00</option>
+                    <option> 14:00</option>
+                    <option> 15:00</option>
+                    <option> 16:00</option>
+                    <option> 17:00</option>
+                    <option> 19:00</option>
+                    <option> 21:00</option>
+                </select>
+
+                <label>Data: </label>     
+                <input type="date" name="data_triagem" value="">       
+
+                <label>Serviço: </label>
+                <select id="serv">
+                    <option> TRATAMENTO FACIAL</option>
+                    <option> SOBRANCELHA</option>
+                    <option> MAQUIAGEM</option>
+                    <option> TRATAMENTO CORPORAL</option>
+                    <option> MASSAGENS RELAXANTES</option>
+                    <option> TRATAMENTO CAPILAR</option>
+                    <option> ESCOVA</option>
+                    <option> CORTE</option>
+                    <option> COLORAÇÃO</option>
+                    <option> MECHAS, LUZES, OMBRE HAIR, ETC.</option>
+                    <option> ALISAMENTO</option>
+                </select>
+                <label></label>
+                <input type="search" placeholder="pesquisar por nome de cliente">
+                <i class="fa fa-search" aria-hidden="true"></i> <br>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>Nome</td>
+                        <td>Telefone</td>
+                        <td>E-mail</td>
+                        <td>Serviços</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><input type="radio"></td>
+                        <td>Fernando</td>
+                        <td>31 9 9310-7057</td>
+                        <td>thiagohenry1@yahoo.com.br</td>
+                        <td>
+                            <select>
+                                <option >MECHAS, LUZES, OMBRE HAIR, ETC.</option>
+                                <!-- Aqui o banco de dados deve retornar todos os serviços selecionados pelo usuario no momento de sua inscrição no formulário de cadastro -->
+                            </select>
+                        </td>
+                        <td><i class="fa fa-user-times" aria-hidden="true"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col_aluno">
+            <div class="menu_alu">
+                <label>Turma</label>
+                <select>
+                    <option>- - - - - - - - -</option>
+                    <!-- aqui o programa deve puxar do DB todos as turmas cadastradas -->
+                </select>
+                <input type="search" placeholder="pesquisar por nome de aluno">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>Nome</td>
+                        <td>Turma</td>
+                        <td>Contato</td>
+                        <td>Horário</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="radio"></td>
+                        <td>Fernando</td>
+                        <td>SII3BN-BPC1</td>
+                        <td></td>
+                        <td></td>
+                        <td><i class="fa fa-user-times" aria-hidden="true"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn_vinc">Vincular</button>
+    </div>
+
+    <!-- rodapé-->
+    <footer>
+
+    </footer>
+</main>
+</body>
+</html>

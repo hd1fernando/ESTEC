@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <title>Feedback</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/estilos.js"></script>
+    <link href="perfilTest.css" rel="stylesheet">
+
+    <style>
+    
+</style>
+<script>
+
+</script>
+</head>
+
+<body class="PPBody">
+    <div class="top_bar">
+        <i id="#menu" class="fa fa-bars fa-2x btn_menu" aria-hidden="true" onclick="ola()"></i>
+        <i class="fa fa-power-off fa-1x btn_sair" aria-hidden="true" onclick="logoff()" ></i>
+        <span id="Sair" onclick="logoff">Sair</span>
+
+    </div>
+    <hr>
+    <div class="acess">
+
+        <ul class="menu">
+            <li><i class="fa fa-cogs fa-1x" aria-hidden="true"></i><a href="triagem.html">Triagem</a></li>
+            <li><i class="fa fa-graduation-cap fa-1x" aria-hidden="true"></i><a href="aluno.html">Aluno</a></li>
+            <li><i class="fa fa-users fa-1x" aria-hidden="true"></i><a href="aluno.html">Turma</a></li>
+            <li><i class="fa fa-user fa-1x" aria-hidden="true"></i><a href="aluno.html">Cliente</a></li>
+            <li><i class="fa fa-commenting fa-1x" aria-hidden="true"></i><a href="feedback.html">Feedback</a></li>
+            <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><a href="PerfilProfessor.html"> Calendario</a></li>
+            <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#"> Sair</a></li>
+        </ul>
+    </div>
+
+    <header>
+        <img class="logo" src="logoEstec.PNG" alt="usuario" onclick="alterarImagem" />
+        <label>Estética e Tecnologia</label>
+        <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
+
+        <img class="FotoPerfil" src="SemFotoUsuario.PNG" alt="usuario" onclick="alterarImagem" />
+        
+
+        <h1 class="NomeUser">Nome</h1>
+
+    </header>
+
+    <main class="PPDefault">
+
+
+        <div class="body_feed">
+            <div class="pesquisar">
+                <label>Serviço: </label>
+
+                <select>
+                    <option>TRATAMENTO FACIAL</option>
+                    <option> SOBRANCELHA</option>
+                    <option>MAQUIAGEM</option>
+                    <option>TRATAMENTO CORPORAL</option>
+                    <option> MASSAGENS RELAXANTES</option>
+                    <option> TRATAMENTO CAPILAR</option>
+                    <option>ESCOVA</option>
+                    <option>CORTE</option>
+                    <option>COLORAÇÃO</option>
+                    <option> MECHAS, LUZES, OMBRE HAIR...</option>
+                    <option>ALISAMENTO</option>
+                    <option selected>TODOS OS SERVIÇOS</option>
+                </select>
+
+                <label>Turma: </label>
+
+                <select id="op_turma">
+                    <option selected>- - - - -</option>
+                    
+                </select>
+                <label>Datas:</label>
+
+                <select>
+                    <option> -- / -- / ----</option>
+                    <option>18/11/2017</option>
+                </select>
+
+                <input type="search" placeholder="pesquisar por aluno ou cliente" size="25">
+                <i class="fa fa-search" aria-hidden="true"></i>
+
+            </div>
+            <div class="feedback">
+                <table>
+                    <thead>
+                        <tr>
+                            <td id="td1" >Aluno</td>
+                            <td id="td2" >Serviço Realizado</td>
+                            <td id="td3" >Cliente</td>
+                            <td id="td4" >Data</td>
+                            <td id="td5" >Avaliação</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>thiago henrique da silva souza</td>
+                            <td>mechas, luzes, ombre hair...</td>
+                            <td>thiago henrique da silva souza</td>
+                            <td>30/10/2017</td>
+                            <td>
+                                <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
+                                <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
+                                <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
+                                <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
+                                <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
