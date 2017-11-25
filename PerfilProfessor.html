@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -16,13 +16,10 @@
             var dataAtual = (atual.getFullYear() + "-" + mes + "-" + atual.getDate());
             document.getElementById('Calend').value = dataAtual;
         </script>
-
         <script type="text/javascript">
             $(document).ready(function () {
                 var value = window.location.href.substring(window.location.href.lastIndexOf('?') + 1);
                 value = value.split("+");
-
-
 
                 $(".NomeUser").html(value[2]);
 
@@ -39,20 +36,37 @@
                             alert("Turma não encontrada.");
                         else {
                             data = JSON.parse(data.split("&"));
-
                             for (var i = 0; i < data.length; i++) {
-
                                 var d = data[i].split(",");
-
-                                $("#tabelaTurma table").append("<tr><td>" + d[0] + ", " + d[1] + "</td></tr>");
-
+                                $("#tabelaTurma table").append("<tr value='"+d[0]+"'><td>" + d[1] + "</td></tr>");
                             }
                         }
                     }
                 });
+				
+				$("#tabelaTurma table").on('click','tr',function(e){
+					e.preventDefault();
+					var idTurma = $(this).attr('value');
+					$.ajax({
+						type: "POST",
+						url: "aluno.php",
+						data: {functionName: "listaAluno", idTurma: idTurma},
+						success: function (data) {
+							if (data == "[]")
+								alert("Não existem alunos cadastrados na turma selecionada.");
+							else {
+								$("#tabelaAluno table").html("");
+								data = JSON.parse(data.split("&"));
+								for (var i = 0; i < data.length; i++) {
+									var d = data[i].split(",");
+									$("#tabelaAluno table").append("<tr value='"+d[0]+"'><td>" + d[1] + "</td></tr>");
+								}
+							}
+						}
+					});
+				});
             });
         </script>
-
         <style>
             /*os estilos abaixo se aplicam ao menu do site*/
             .menu {
@@ -120,21 +134,13 @@
                 position: fixed;
                 width: 100%;
             }
-
-
             .concerto {
                 height: 100%;
                 overflow: auto;
                 width: 100%;
             }
-
-
         </style>
-
     </head>
-
-
-
     <body class="">
         <div class="top_bar">
             <i id="#menu" class="fa fa-bars fa-4x btn_menu" aria-hidden="true" onclick="ola()"></i>
@@ -150,119 +156,36 @@
                 <li><i class="fa fa-calendar fa-2x" aria-hidden="true"></i><a href="#"> Calendario</a></li>
             </ul>
         </div>
-
         <header>
-            <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
+            <div class="EstecLogo" dir="auto" role="heading">ESTEC</div>
             <img src="img/admin.jpg" alt="usuario" />
             <h1 class="NomeUser">Nome</h1>
 			<input type="hidden" id="idProfessor"/>
 			<input type="hidden" id="loginUsuario"/>
 			<input type="hidden" id="nomeUsuario"/>
         </header>
-
         <main class="PPDefault">
-
             <div class="DefaultTurma">
                 <div class="NomeTabela">
                     <label>Turma</label>  					
                 </div>
-
                 <div class="TabelaNS" id="tabelaTurma">
-                    <table>
-                        
-                    </table>
+                    <table></table>
                 </div>
             </div>
-
-
             <div class="DefaultCalendario">
                 <div class="NomeTabela">	
-                    <label>Calendário</label>   		
+                    <label>Calendário</label>
                 </div>
-				
 				<!-- *****input data no calendario ****** -->
                 <input type="date" name="Calend" id='Calend' value="">
             </div>
-
             <div class="DefaultNS">
                 <div class=" NomeTabela">
-                    <label>NS</label>
+                    <label>Alunos</label>
                 </div>   	
-
-                <div class="TabelaNS">
-                    <table>
-                        <tr>
-                            <td>Thiago Henrique wwww 1 2 3 4 5 6 7 8 9 0da Silva</td>
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercwwwwwwwwwwwwwwwial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr><td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr><td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr><td>Thiago Henrique da Silva</td>
-
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                        </tr>
-                    </table>
+                <div class="TabelaNS" id="tabelaAluno">
+                    <table></table>
                 </div>
             </div>
         </main>
