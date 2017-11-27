@@ -35,11 +35,12 @@
                             data: {functionName: functionName, usuario: usuario, password: password},
                             success: function (dado) {
                                 dado = dado.split("&");
-                                if (dado[0] == "") alert("Usuário não encontrado.");
-                                else{
-									var url = 'PerfilProfessor.html';
-									window.location.href = url+"?"+dado[0]+"+"+dado[1]+"+"+dado[2];
-								}
+                                if (dado[0] == "")
+                                    alert("Usuário não encontrado.");
+                                else {
+                                    var url = 'PerfilProfessor.html';
+                                    window.location.href = url + "?" + dado[0] + "+" + dado[1] + "+" + dado[2];
+                                }
                             }
                         });
                         return false;
@@ -60,7 +61,7 @@
                         <label for="password">Senha:</label>
                         <input type="password" id="password" />
                     </div>
-                    <a href="https://www.google.com/">Recuperar sua senha</a>
+                    <a href="#">Recuperar sua senha</a>
                     <div class="ButtonEntrar">
                         <button type="submit" id="idbotaoEntrar" name="botaoEntrar">Entrar</button>
                     </div>
