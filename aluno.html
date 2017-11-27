@@ -1,84 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title></title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link type="text/CSS" rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/estilos.js"></script>
-    <link type="text/CSS" rel="stylesheet" href="perfilTest.css"/>
-    <script type="text/javascript">
-        function show(show, hide1, hide2, value) {
-            $(show).show();
-			$(hide1).hide();
-            $(hide2).hide();
-            $("#pesquisa").attr("placeholder", "pesquisar por " + value);
-			$(".btn").css("background-color", "#FFFFFF");
-            $("#btn_"+value).css("background-color", "#efc7ef");
-        }
-		
-		function listaAlunoCliente(){
-			$(".tabelas #div_aluno table tbody").html("");
-			var idProfessor = 1;
-			$.ajax({
-                    type: "POST",
-                    url: "aluno.php",
-                    data: {functionName: "listaAlunoCliente", idProfessor: idProfessor},
-                    success: function (data) {
-                        if (data[0] == "") alert("Não foram encontrado alunos cadastrados.");
-                        else {
-                            data = JSON.parse(data.split("&"));
-                            for (var i = 0; i < data.length; i++) {
-                                var d = data[i].split(",");
-                                $(".tabelas #div_aluno table tbody").append("<tr><td value='"+d[0]+"'>"+d[1]+"</td><td>"+d[2]+"</td><td>"+d[3]+"</td><td value='"+d[4]+"'>"+d[5]+"</td><td value='"+d[6]+"'>"+d[7]+"</td><td><i class='fa fa-user-times' aria-hidden='true' id='btn_del' onclick='delete_aluno()'></i></td><td><i class='fa fa-pencil' aria-hidden='true' id='btn_edit' onclick='editar_aluno()'></i></td></tr>");
-                            }
-                        }
-                    }
-                });
-		}
-		
-		function listaClienteAluno(){
-			$(".tabelas #div_cliente table tbody").html("");
-			$.ajax({
-                    type: "POST",
-                    url: "cliente.php",
-                    data: {functionName: "listaClienteAluno"},
-                    success: function (data) {
-                        if (data[0] == "") alert("Não foram encontrado clientes cadastrados.");
-                        else {
-                            data = JSON.parse(data.split("&"));
-                            for (var i = 0; i < data.length; i++) {
-                                var d = data[i].split(",");
-                                $(".tabelas #div_cliente table tbody").append("<tr><td value='"+d[0]+"'>"+d[1]+"</td><td>"+d[2]+"</td><td>"+d[3]+"</td><td value='"+d[4]+"'>"+d[5]+"</td><td value='"+d[6]+"'>"+d[7]+"</td><td><i class='fa fa-user-times' aria-hidden='true' id='btn_del' onclick='delete_cliente()'></i></td><td><i class='fa fa-pencil' aria-hidden='true' id='btn_edit' onclick='editar_cliente()'></i></td></tr>");
-                            }
-                        }
-                    }
-                });
-		}
-		
-		function listaQTDAlunoTurma(){
-			$(".tabelas #div_turma table tbody").html("");
-			var idProfessor = 1;
-			$.ajax({
-                    type: "POST",
-                    url: "aluno.php",
-                    data: {functionName: "listaQTDAlunoTurma", idProfessor: idProfessor},
-                    success: function (data) {
-                        if (data[0] == "") alert("Não foram encontrado turmas cadastrados.");
-                        else {
-                            data = JSON.parse(data.split("&"));
-                            for (var i = 0; i < data.length; i++) {
-                                var d = data[i].split(",");
-                                $(".tabelas #div_turma table tbody").append("<tr><td value='"+d[0]+"'>"+d[1]+"</td><td>"+d[2]+"</td><td><i class='fa fa-user-times' aria-hidden='true' id='btn_del' onclick='delete_turma()'></i></td><td><i class='fa fa-pencil' aria-hidden='true' id='btn_edit' onclick='editar_turma()'></i></td></tr>");
-                            }
-                        }
-                    }
-                });
-		}
-		
-    </script>
-	            <style>
+    <head>
+        <title><!-- pegar do bd--></title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/CSS" rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/estilos.js"></script>
+        <link type="text/CSS" rel="stylesheet" href="css/perfilTest.css"/>
+        <link type="text/CSS" rel="stylesheet" href="css/perfilTest.css"/>
+        <style>
+
             .pop{
                 color: white;
                 background: white;
@@ -91,7 +23,7 @@
                 padding:35px;
                 width:55%;
                 height:10em;
-                border:1px solid #d0d0d0
+                border:1px solid #d0d0d0;
                 border: 1px solid #CCC;
                 border-radius: 1em;
                 background-color: white;
@@ -122,165 +54,329 @@
 
             #appearance-select{
 
-             -webkit-appearance: none;  /* Remove estilo padrão do Chrome */
-             -moz-appearance: none; /* Remove estilo padrão do FireFox */
-             appearance: none; /* Remove estilo padrão do FireFox*/
-             background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat ;  /* Imagem de fundo (Seta) */
-             background-position: 218px center;  /*Posição da imagem do background*/
-             width: 250px; /* Tamanho do select, maior que o tamanho da div "div-select" */
-             height:30px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
-             border:1px solid;
-             margin-left: 5em;
-         }
-         .add_aluno_manual input[type=tel]{
-            width:150px;
+                -webkit-appearance: none;  /* Remove estilo padrão do Chrome */
+                -moz-appearance: none; /* Remove estilo padrão do FireFox */
+                appearance: none; /* Remove estilo padrão do FireFox*/
+                background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat ;  /* Imagem de fundo (Seta) */
+                background-position: 218px center;  /*Posição da imagem do background*/
+                width: 250px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+                height:30px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+                border:1px solid;
+                margin-left: 5em;
+            }
+            .add_aluno_manual input[type=tel]{
+                width:150px;
 
 
-        }
+            }
 
-        .Asterisk2{
-            position:absolute; 
-            margin-left: 3.5em;
-            color: red;
-        }
-        .add_aluno_manual label {
-           /*Para ter certeza que todas as labels tem o mesmo tamanho e estão propriamente alinhadas */
-           display: inline-block;
-           width: 50px;
-           text-align: right;
+            .Asterisk2{
+                position:absolute; 
+                margin-left: 3.5em;
+                color: red;
+            }
+            .add_aluno_manual label {
+                /*Para ter certeza que todas as labels tem o mesmo tamanho e estão propriamente alinhadas */
+                display: inline-block;
+                width: 50px;
+                text-align: right;
 
-       }
-       .add_email_aluno{
-        margin-top: 5px;
-    }
-    .close_pop{
-        color: red;
-        position: absolute;
-        float: right;
-        margin-left: 47.5em;
-        margin-top: -1.8em;
-    }
-    .confirmar{
-        cursor: pointer;
-        color: green;
-        border-radius: 10px;
-        border: 1px solid green;
-        width: 1.5em; 
-        text-align: center;
-        float: right;
-        margin-right: 46.9%;
-        margin-top: 6%;
-    }
-    .confirmar:hover{
-        background-color:  #76d276;
-        border-color:  green;
-    }
-</style>
-</head>
-<body class="PPBody" onload="listaAlunoCliente()">
-    <div class="top_bar">
-        <i id="#menu" class="fa fa-bars fa-2x btn_menu" aria-hidden="true" onclick="ola()"></i>
-        <i class="fa fa-power-off fa-1x btn_sair" aria-hidden="true" onclick="logoff()" ></i>
-        <span id="Sair" onclick="logoff">Sair</span>
-    </div>
-    <hr>
-    <div class="acess">
-        <ul class="menu">
-            <li><i class="fa fa-cogs fa-1x" aria-hidden="true"></i><a href="triagem.html">Triagem</a></li>
-            <li><i class="fa fa-graduation-cap fa-1x" aria-hidden="true"></i><a href="aluno.html">Aluno</a></li>
-            <li><i class="fa fa-users fa-1x" aria-hidden="true"></i><a href="aluno.html">Turma</a></li>
-            <li><i class="fa fa-user fa-1x" aria-hidden="true"></i><a href="aluno.html">Cliente</a></li>
-            <li><i class="fa fa-commenting fa-1x" aria-hidden="true"></i><a href="feedback.html">Feedback</a></li>
-            <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><a href="PerfilProfessor.html"> Calendario</a></li>
-            <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#"> Sair</a></li>
-        </ul>
-	</div>
-	<header>
-		<img class="logo" src="logoEstec.PNG" alt="usuario" onclick="alterarImagem"/>
-		<label>Estética e Tecnologia</label>
-		<div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
-		<img class="FotoPerfil" src="SemFotoUsuario.PNG" alt="usuario" onclick="alterarImagem" />
-		<h1 class="NomeUser">Nome</h1>
-     </header>
-	 <main class="PPDefault">
-        <div class="esconder"></div>
-        <div class="tabelas">
-            <div class="nav_barra">
-                <span id="btn_aluno" class="btn" onclick="show('#div_aluno', '#div_turma', '#div_cliente', 'aluno'), listaAlunoCliente()">Aluno</span>
-                <span id="btn_cliente" class="btn" onclick="show('#div_cliente', '#div_turma', '#div_aluno', 'cliente'), listaClienteAluno()">Cliente</span>
-                <span id="btn_turma" class="btn" onclick="show('#div_turma', '#div_aluno', '#div_cliente', 'turma'), listaQTDAlunoTurma()">Turma</span>
-                <input type="search" id="pesquisa" placeholder="pesquisar por aluno"/>
-                <i class="fa fa-search fa-1x" id="btn_search" onclick="pesquisar()" aria-hidden="true"></i>
-            </div>
-            <div id="div_aluno" class="div_user">
-                <table class="tabela_aluno">
-                    <thead class="thead" >
-                        <tr>
-                            <td>Nome</td>
-							<td>Telefone</td>
-							<td>Email</td>
-                            <td>Turma</td>
-                            <td>Cliente</td>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
+            }
+            .add_email_aluno{
+                margin-top: 5px;
+            }
+
+            .close_pop{
+                color: red;
+                position: absolute;
+                float: right;
+                margin-left: 47.5em;
+                margin-top: -1.8em;
+            }
+            .confirmar{
+                cursor: pointer;
+                color: green;
+                border-radius: 10px;
+                border: 1px solid green;
+                width: 1.5em; 
+                text-align: center;
+                float: right;
+                margin-right: 46.9%;
+                margin-top: 6%;
+            }
+            .confirmar:hover{
+                background-color:  #76d276;
+                border-color:  green;
+            }
+
+            /*controla tabelas que setão exibidas*/
+            #div_aluno:target, #div_cliente:target, #div_turma:target{
+                display: block;
+            }
+
+        </style>
+        <script type="text/javascript">
+          
+
+            function listaAlunoCliente() {
+                $(".tabelas #div_aluno table tbody").html("");
+                var idProfessor = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "aluno.php",
+                    data: {functionName: "listaAlunoCliente", idProfessor: idProfessor},
+                    success: function (data) {
+                        if (data[0] == "")
+                            alert("Não foram encontrado alunos cadastrados.");
+                        else {
+                            data = JSON.parse(data.split("&"));
+                            for (var i = 0; i < data.length; i++) {
+                                var d = data[i].split(",");
+                                $(".tabelas #div_aluno table tbody").append("<tr><td value='" + d[0] + "'>" + d[1] + "</td><td>" + d[2] + "</td><td>" + d[3] + "</td><td value='" + d[4] + "'>" + d[5] + "</td><td value='" + d[6] + "'>" + d[7] + "</td><td><i class='fa fa-user-times' aria-hidden='true' id='btn_del' onclick='delete_aluno()'></i></td><td><i class='fa fa-pencil' aria-hidden='true' id='btn_edit' onclick='editar_aluno()'></i></td></tr>");
+                            }
+                        }
+                    }
+                });
+            }
+
+            function listaClienteAluno() {
+                $(".tabelas #div_cliente table tbody").html("");
+                $.ajax({
+                    type: "POST",
+                    url: "cliente.php",
+                    data: {functionName: "listaClienteAluno"},
+                    success: function (data) {
+                        if (data[0] == "")
+                            alert("Não foram encontrado clientes cadastrados.");
+                        else {
+                            data = JSON.parse(data.split("&"));
+                            for (var i = 0; i < data.length; i++) {
+                                var d = data[i].split(",");
+                                $(".tabelas #div_cliente table tbody").append("<tr><td value='" + d[0] + "'>" + d[1] + "</td><td>" + d[2] + "</td><td>" + d[3] + "</td><td value='" + d[4] + "'>" + d[5] + "</td><td value='" + d[6] + "'>" + d[7] + "</td><td><i class='fa fa-user-times' aria-hidden='true' id='btn_del' onclick='delete_cliente()'></i></td><td><i class='fa fa-pencil' aria-hidden='true' id='btn_edit' onclick='editar_cliente()'></i></td></tr>");
+                            }
+                        }
+                    }
+                });
+            }
+
+            function listaQTDAlunoTurma() {
+                $(".tabelas #div_turma table tbody").html("");
+                var idProfessor = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "aluno.php",
+                    data: {functionName: "listaQTDAlunoTurma", idProfessor: idProfessor},
+                    success: function (data) {
+                        if (data[0] == "")
+                            alert("Não foram encontrado turmas cadastrados.");
+                        else {
+                            data = JSON.parse(data.split("&"));
+                            for (var i = 0; i < data.length; i++) {
+                                var d = data[i].split(",");
+                                $(".tabelas #div_turma table tbody").append("<tr><td value='" + d[0] + "'>" + d[1] + "</td><td>" + d[2] + "</td><td><i class='fa fa-user-times' aria-hidden='true' id='btn_del' onclick='delete_turma()'></i></td><td><i class='fa fa-pencil' aria-hidden='true' id='btn_edit' onclick='editar_turma()'></i></td></tr>");
+                            }
+                        }
+                    }
+                });
+            }
+
+        </script>
+
+    </head>
+    <body class="PPBody">
+
+        <div class="top_bar">
+            <i id="menu" class="fa fa-bars fa-2x btn_menu" aria-hidden="true" onclick="ola()"></i>
+            <i class="fa fa-power-off fa-1x btn_sair" aria-hidden="true" onclick="logoff()" ></i>
+            <span id="Sair" onclick="logoff">Sair</span>
+
+        </div>
+        <hr>
+        <div class="acess">
+            <ul class="menu">
+                <li><i class="fa fa-cogs fa-1x" aria-hidden="true"></i><a href="triagem.html">Triagem</a></li>
+                <li><i class="fa fa-graduation-cap fa-1x" aria-hidden="true"></i><a href="aluno.html#div_aluno">Aluno</a></li>
+                <li><i class="fa fa-users fa-1x" aria-hidden="true"></i><a href="aluno.html#div_turma">Turma</a></li>
+                <li><i class="fa fa-user fa-1x" aria-hidden="true"></i><a href="aluno.html#div_cliente">Cliente</a></li>
+                <li><i class="fa fa-commenting fa-1x" aria-hidden="true"></i><a href="feedback.html">Feedback</a></li>
+                <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><a href="PerfilProfessor.html"> Calendario</a></li>
+                <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#"> Sair</a></li>
+            </ul>      
+        </div>
+
+        <header>
+            <img class="logo" src="img/logoEstec.png" alt="usuario" onclick="alterarImagem" />
+            <label>Estética e Tecnologia</label>
+            <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
+
+            <img class="FotoPerfil" src="img/SemFotoUsuario.png" alt="usuario" onclick="alterarImagem" />
+
+
+            <h1 class="NomeUser">Nome</h1>
+        </header>
+
+        <main class="PPDefault">
+            <div class="esconder"></div>
+
+            <div class="tabelas">
+                <div class="nav_barra">
+                    <a id="btn_aluno" class="btn"  href="#div_aluno" onclick="show('#btn_aluno', '#btn_cliente', '#btn_turma')" >Aluno</a>
+                    <a id="btn_cliente" class="btn" href="#div_cliente" onclick="show('#btn_cliente', '#btn_aluno', '#btn_turma')">Cliente</a>
+                    <a id="btn_turma" class="btn" href="#div_turma" onclick="show('#btn_turma', '#btn_aluno', '#btn_cliente')">Turma</a>
+                    <input type="search" id="pesquisa" placeholder="pesquisar por aluno">
+                    <i class="fa fa-search fa-1x" id="btn_search" onclick="pesquisar()" aria-hidden="true"></i>
+
+                </div>
+                <div id="div_aluno" class="div_user">
+                    <table class="tabela_aluno">
+                        <thead class="thead" >
+                            <tr>
+                                <td>Nome</td>
+                                <td>Turma</td>
+                                <td>Contato</td>
+                                <td>Cliente</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Fernando</td>
+                                <td>fer</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <i class="fa fa-user-times" aria-hidden="true" id="btn_del"  onclick="delete_aluno()"></i>
+                                </td>
+                                <td>
+                                    <i class="fa fa-pencil" aria-hidden="true" id="btn_edit" onclick="editar_aluno()"></i>
+                                </td> 
+
+                            <tr>
+                                <td>Fernando</td>
+                                <td>fer</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <i class="fa fa-user-times" aria-hidden="true" id="btn_del" onclick="delete_aluno()"></i>
+                                </td>
+                                <td>
+                                    <i class="fa fa-pencil" aria-hidden="true" id="btn_edit" onclick="editar_aluno()"></i>
+                                </td>
+
+                            </tr>
+                        </tbody>
                     </table>
+
                     <div class="add_aluno">
-                        <i class="fa fa-user-plus" id="add_aluno" onclick="document.getElementById('pop').style.display='block';"" aria-hidden="true"></i>
+                        <i class="fa fa-user-plus" id="add_aluno" onclick="document.getElementById('pop').style.display = 'block';" aria-hidden="true"></i>
                     </div>
                 </div>
+
                 <div id="div_cliente" class="div_user">
                     <table class="tabela_cliente">
                         <thead class="thead" >
                             <tr>
                                 <td>Nome</td>
-                                <td>Telefone</td>
-                                <td>Email</td>
-								<td>Endereço</td>
-								<td>Aluno</td>
+                                <td>Contato</td>
+                                <td>Aluno</td>
                             </tr>
                         </thead>
-                        <tbody></tbody>
-                        </table>
-                        <div class="options">
+                        <tbody>
+                            <tr>
+                                <td>Fernando</td>
+                                <td></td>
+                                <td ></td>
 
-                        </div>
-                    </div>
-                    <div id="div_turma" class="div_user">
-                        <table class="tabela_turma">
-                            <thead class="thead" >
-                                <tr>
-                                    <td>Nome</td>
-                                    <td>Quantidade de alunos</td>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                            <input type="file" id="btn_add_turma" name="btn_add_turma"/>
-                            <label id="msg_import">Adicionar turma: importe a lista de alunos</label>
-                    </div>
+                                <td class="size_conserto">
+                                    <i class="fa fa-user-times" aria-hidden="true" id="btn_del" onclick="delete_cliente()"></i>
+                                </td>
+                                <td class="size_conserto">
+                                    <i class="fa fa-pencil" aria-hidden="true" id="btn_edit" onclick="editar_cliente()"></i>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="options">
+
                     </div>
                 </div>
-            </main>
-<form class="pop" id="pop">
-    <a href="#" onclick="document.getElementById('pop').style.display='none';"><i class="fa fa-times close_pop" aria-hidden="true"></i></a>
-	<br/>
-    <div class="add_aluno_manual">
-        <div>
-            <label for="name">Nome:</label><span class="Asterisk" aria-hidden="true">*</span>
-            <input type="text" id="addname_aluno"/>
-            <span class="Asterisk2" aria-hidden="true">*</span>
-            <select id="appearance-select">
-                <option>Selecione a turma</option>
-                <option></option>
-            </select>
-            <label for="name">Tel:</label><span class="Asterisk" aria-hidden="true">*</span>
-            <input type="tel" id="addtel_aluno"/><br/>
-            <label class="add_email_aluno" for="name">E-mail:</label><span class="Asterisk" aria-hidden="true">*</span>
-            <input type="text" id="addemail_aluno"/>
-            <i class="fa fa-check fa-2x confirmar" id="confirmar" aria-hidden="true"></i>
-        </div>
-    </div>
-</form>
-</body>
+
+                <div id="div_turma" class="div_user">
+                    <table class="tabela_turma">
+                        <thead class="thead" >
+                            <tr>
+                                <td>Nome</td>
+                                <td>Quantidade Alunos</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SBPN02/2017</td>
+                                <td></td>
+                                <td>
+
+                                    <i class="fa fa-users fa-1x" aria-hidden="true" id="btn_del"></i>
+                                    <i class="x" aria-hidden="true">x</i>
+
+
+                                </td>
+                                <td>
+                                    <i class="fa fa-pencil" aria-hidden="true" id="btn_edit" 
+                                       onclick="editar_turma()"></i>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                    <input type="file" id="btn_add_turma" name="btn_add_turma">
+                    <label id="msg_import">Adicionar turma: importe a lista de alunos</label>
+
+
+
+
+
+
+                </div>
+            </div>
+        </main>
+
+
+
+        <form class="pop" id="pop">
+            <a href="#" onclick="document.getElementById('pop').style.display = 'none';"><i class="fa fa-times close_pop" aria-hidden="true"></i>
+            </a>  <br />
+
+            <div class="add_aluno_manual">
+                <div>
+                    <label for="name">Nome:</label><span class="Asterisk" aria-hidden="true">*</span>
+                    <input type="text" id="addname_aluno"/>
+
+                    <span class="Asterisk2" aria-hidden="true">*</span>
+
+                    <select id="appearance-select">
+                        <option>Selecione a turma</option>
+                        <option></option>
+
+                    </select>
+                    <label for="name">Tel:</label><span class="Asterisk" aria-hidden="true">*</span>
+                    <input type="tel" id="addtel_aluno"/><br/>
+
+                    <label class="add_email_aluno" for="name">E-mail:</label><span class="Asterisk" aria-hidden="true">*</span>
+                    <input type="text" id="addemail_aluno"/>
+
+                    <i class="fa fa-check fa-2x confirmar" id="confirmar" aria-hidden="true"></i>
+
+
+
+                </div>
+
+            </div>
+        </form>
+
+
+
+    </body>
 </html>

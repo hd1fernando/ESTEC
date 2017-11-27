@@ -9,7 +9,7 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/estilos.js"></script>
 
-    <link href="perfilTest.css" rel="stylesheet">
+    <link href="css/perfilTest.css" rel="stylesheet">
 
     <style>
     
@@ -19,7 +19,7 @@
 
 <body class="PPBody">
     <div class="top_bar">
-        <i id="#menu" class="fa fa-bars fa-2x btn_menu" aria-hidden="true" onclick="ola()"></i>
+        <i id="menu" class="fa fa-bars fa-2x btn_menu" aria-hidden="true" onclick="ola()"></i>
         <i class="fa fa-power-off fa-1x btn_sair" aria-hidden="true" onclick="logoff()" ></i>
         <span id="Sair" onclick="logoff">Sair</span>
 
@@ -29,9 +29,9 @@
 
         <ul class="menu">
             <li><i class="fa fa-cogs fa-1x" aria-hidden="true"></i><a href="triagem.html">Triagem</a></li>
-            <li><i class="fa fa-graduation-cap fa-1x" aria-hidden="true"></i><a href="aluno.html">Aluno</a></li>
-            <li><i class="fa fa-users fa-1x" aria-hidden="true"></i><a href="aluno.html">Turma</a></li>
-            <li><i class="fa fa-user fa-1x" aria-hidden="true"></i><a href="aluno.html">Cliente</a></li>
+            <li><i class="fa fa-graduation-cap fa-1x" aria-hidden="true"></i><a href="aluno.html#div_aluno">Aluno</a></li>
+                <li><i class="fa fa-users fa-1x" aria-hidden="true"></i><a href="aluno.html#div_turma">Turma</a></li>
+                <li><i class="fa fa-user fa-1x" aria-hidden="true"></i><a href="aluno.html#div_cliente">Cliente</a></li>
             <li><i class="fa fa-commenting fa-1x" aria-hidden="true"></i><a href="feedback.html">Feedback</a></li>
             <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><a href="PerfilProfessor.html"> Calendario</a></li>
             <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#"> Sair</a></li>
@@ -39,11 +39,11 @@
     </div>
 
     <header>
-     <img class="logo" src="logoEstec.PNG" alt="usuario" onclick="alterarImagem" />
+        <img class="logo" src="img/logoEstec.png" alt="usuario" onclick="alterarImagem" />
      <label>Estética e Tecnologia</label>
      <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
 
-     <img class="FotoPerfil" src="SemFotoUsuario.PNG" alt="usuario" onclick="alterarImagem" />
+     <img class="FotoPerfil" src="img/SemFotoUsuario.png" alt="usuario" onclick="alterarImagem" />
 
 
      <h1 class="NomeUser">Nome</h1>

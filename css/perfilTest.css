@@ -1,6 +1,6 @@
 .PPBody{
 
-    font-family:"lucida grande", tahoma, verdana, arial, sans-serif;
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 
 }
 
@@ -9,33 +9,52 @@ header{
     display: inline-block;
     height: 100px;
     background: #efc7ef;
-
+    margin-top: .8em;
+    position: fixed;
+    z-index:2;
 
 }
-main.PPDefault {
+main.PPDefault{
     margin-left: 10.5em;
     margin-right: 10.5em;
-    margin-top: 2.6em;
+    margin-top: 10.5em;
 }
 
 * {
     margin: 0;
 }
 
-img {
+.FotoPerfil:hover {
+    cursor: pointer;
+
+}
+
+.FotoPerfil {
     display: inline;
     width: 100px;
     height: 100px;
     border-radius: 50%;
     border:5px solid white;
-    margin-left: 620px;
+    margin-left: 570px;
     margin-top: 25px;
+
 
 }
 
 header *{
     display: inline;
     float: left;
+}
+
+header label{
+    font-size: 17px;
+    margin-top:4.9em;
+    margin-left: 3.9em;
+    position: absolute;
+    display: inline; 
+    font-family: Monotype Corsiva, sans-serif;
+
+
 }
 
 h1 {
@@ -47,19 +66,28 @@ h1 {
     color: #5d5656;
     margin: 100;
     float: right;
-    margin-right: 370px; 
+    margin-right: 330px; 
     padding: 0;
     font-size: 18px;
     font-weight: bold;
     text-align: right;
     margin-top: -60px;
-    
+
+}
+
+.logo{
+    width: 129px;
+    height: 75px;
+    margin-left: 10em;
+    margin-top: 20px;
+    display: inline;
+
 }
 
 .EstecLogo{
     display: inline;
     font-family: Monotype Corsiva, sans-serif;
-    font-size: 5.125em;
+    font-size: 4.125em;
     color: purple;
     /*#01baf2;*/
     font-weight: 100;
@@ -68,7 +96,6 @@ h1 {
     line-height: 50px;  
     font-weight: bold; 
     text-shadow: black 0.01em 0.1em 0.2em;
-    margin-left: 1.9em;
 
 }
 
@@ -82,8 +109,8 @@ h1 {
     border-radius: 1em;
     background-color: white;
     box-shadow: black 0.01em 0.1em 2.2em;
-    width: 250px;
-    height: 500px;
+    width: 270px;
+    height: 480px;
     /* Para ver as bordas do formulário */
     padding: 1em;
     color: black;
@@ -97,8 +124,8 @@ h1 {
     border-radius: 1em;
     background-color: white;
     box-shadow: black 0.01em 0.1em 2.2em;
-    width: 250px;
-    height: 500px;
+    width: 270px;
+    height: 480px;
     /* Para ver as bordas do formulário */
     padding: 1em;
     color: black;
@@ -122,51 +149,511 @@ h1 {
     position:absolute;
 }
 
-.b {
+.NomeTabela {
 
-    font-size: 18px;
+    font-size: 22px;
     color: white; 
-    height: 50px;
+    height: 40px;
     background: purple;
     text-align: center;
-    vertical-align: center;
+
+
 
 }
 
-    
-input {
-    margin-top: 2em;
-    width: 257px;
+.calendar {
+    margin-top: 1.0em;
+    width: 259px;
     text-align: center;
     font-size: 18px;
     color: purple;
     font-family:"lucida grande", tahoma, verdana, arial, sans-serif;
     font-weight: bold;
-    left: center; 
+    /*left: center;*/ 
     position: absolute; 
     margin-left: 05.8%;
-            
+    box-shadow: 1px 1px 2px #333333;    
+    -moz-box-shadow: 1px 1px 2px #333333;
+    -webkit-box-shadow: 2px 1px 2px #333333;
+    border:1px solid #000000;
+
+
 
 }
 
-.TabelaNS, .TabelaTurma {
+.TabelaNS {
+
     color: black;
+    height: 90%;
     overflow: auto;
+    width: 100%;
+
+
+
 }
-table{ 
-    margin-top: 2.5em;
+.TabelaNS #td1{
+    width: 3em;
+    text-align: right;
+} 
+
+
+.PPDefault table{ 
+    margin-top: 1.0em;
     font-size: 15px;
     border-collapse: collapse;
+
     overflow: auto;
+    width: 100%;
+
+
 }
 
-td{
-    border: 1px solid #dddddd;
+.PPDefault td{
+    border: 1px solid #black;
     text-align: left;
     padding: 5px;
     padding-left: 2px;
 }
 
-tr:nth-child(even) {
+.PPDefault tr:nth-child(even) {
     background-color: #dddddd;
+
+}
+
+.menu {
+    list-style-type:none; 
+    display: none;
+    color: white;
+    background: #272525;
+
+}
+
+.acess:target{
+    background: #272525;
+}
+
+.acess{
+    /*background: #272525;*/
+
+    height: 100%;
+    width: 20%;
+    position: absolute;
+    margin-top: 1.9em;
+    position: fixed;
+    z-index: -1;
+}
+
+.btn_sair{
+    position: absolute;
+    display: inline-block;
+    float: right;
+    color: white;
+    margin-left: 69.5em;
+    cursor: pointer;
+
+}
+
+
+#Sair {
+    position: absolute;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    margin-left: 69em;
+    margin-top: 1em; 
+    cursor: pointer;
+    z-index: 3;
+
+}
+
+.menu i{
+    display:inline;
+}
+ul.menu{
+    margin: 0;
+    padding: 1px;
+    border: 1px solid;
+}
+.menu a{
+    text-decoration: none;
+    color: white;
+    width: 80%;
+    float:right;
+    text-align: left;
+    padding: 0; 
+    margin-left: 0;
+    font-size: 20px;
+}
+.btn_menu{
+    margin-left: 8px;
+    color: white;
+}
+
+.menu li{
+    border-bottom:  1px solid;
+    margin: 0;
+    padding: 3px;
+}
+.menu li:hover{
+    color: white;
+}
+.menu li:last-child{
+    border-bottom: none;
+
+}
+
+.menu li:hover{
+    cursor: pointer;
+    background: #666666;
+
+}
+.menu li a:hover{
+    color: white;
+}
+.btn_menu:hover{
+    cursor: pointer;
+    width: 25%;
+}
+hr{
+    margin: 0;
+    padding: 0;
+}
+.top_bar{
+    position: fixed;
+    width: 100%;
+    background: #333;
+    z-index: 3;
+}
+
+
+/* ******************** aluno **************** */
+
+
+.tabela_aluno, .tabela_cliente, .tabela_turma {
+    border-collapse: collapse;
+    width: 100%
+
+}
+.nav_barra i{
+    float: right;
+
+}
+
+
+
+#div_cliente, #div_turma {
+    display: none;
+}
+.thead{
+    background: purple;
+    font-weight: bold;
+    color: white;
+}
+
+.size_conserto{
+    width: 23px;
+}
+
+tr td{
+    border: 1px solid gray;
+}
+tbody tr:nth-child(odd){
+    background-color: white;
+}
+tbody tr:nth-child(even){
+    background-color: #dddddd;
+
+}
+
+.btn:visited { color: blue; }
+
+
+.btn:target{
+    background-color: #efc7ef;
+}
+input:focus {
+    border-color: #000;
+}
+.btn{
+    cursor: pointer;
+    border: 1px solid black;
+    border-bottom: none;
+    margin: 0;
+    padding: 3px;
+    width: 6em;
+    text-align: center;
+    border-color: gray;
+    border-radius: 1em 5em 1em 4em;
+    text-decoration: none;
+    z-index: 2;
+
+}
+
+
+#btn_aluno, #btn_cliente, #btn_turma {
+    float: left;
+    margin-left: 1em; 
+    color:#000;
+    background-color: white;
+}
+
+
+#pesquisa{
+    float: left;
+    margin-left: 28.5em;
+    margin-top: -.3em;
+    text-align: left;
+    color: black;
+    font-weight: normal; 
+    font-size: 15px;
+    width: 18.3em
+}
+
+#btn_search{
+    cursor: pointer;
+
+}
+
+.div_user{
+    border: 1px solid black;
+    margin: 0px;
+}
+#div_aluno,#div_cliente, #div_turma {
+    margin-top: 1.4em;
+    position: fixed;
+    width: 72.9%;
+    height: 28em;
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: black 0.01em 0.1em 2.2em;
+}
+.tabelas{
+    margin-top: 10em;
+
+}
+
+#btn_del, #btn_edit {
+    cursor: pointer;
+    width: 21px;
+    position: absolute;
+    margin-left: 5px;
+    margin-top: -5px
+}
+
+.plus, .x {
+    position: absolute; 
+    margin-left: 0.5em;
+    margin-top: -15px;
+    font-size: 20px;
+
+    text-shadow: 1px 0px 0px white, 
+        -1px 0px 0px white, 
+        0px 1px 0px white, 
+        0px -1px 0px white;
+    font-weight: bold;
+    color: black;
+}
+.x{
+    margin-left: 15px;
+    position: absolute; 
+    margin-top: -2.7px;
+    cursor: pointer;
+    font-size: 15px;
+
+}
+
+
+.div_user #msg_import{
+    position: absolute; 
+    margin-left: 28.5em;
+    margin-top: 25.9em;
+    text-align: right;
+    font-size: 0.9em;
+}
+
+.add_aluno{
+    float: right;
+    cursor: pointer;
+    margin-right: 1em;
+    margin-top: 23.3em;
+}
+
+
+input[type=file]{
+    float: right;
+    margin-right: 1em;
+    margin-top: 27.7em;
+}
+
+.add_aluno{
+    margin-top: 21.5em;
+}
+
+/* ******* feedback *********/
+
+.feedback {
+    height: 27em;
+    width: auto;
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: black 0.01em 0.1em 2.2em;
+}
+.pesquisar_Feedback{
+    float: right;
+    color: red; 
+}
+
+.pesquisar label + select{
+    margin-right: 1.3em;
+}
+#op_turma{
+    width: 18em;
+}
+
+.feedback thead tr{
+    background: purple;
+    font-weight: bold;
+    color: white;
+
+}
+.feedback thead tr td{
+    padding: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 2px;
+}
+.feedback table{
+    border-color: gray;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+i{
+    cursor: pointer;
+}
+
+.feedback #td1, .feedback #td3{
+    width: 17em;
+}
+.feedback #td4, .feedback #td5{
+    width: 7em;
+}
+
+/* ******************** Triagem ******************** */
+.triagem_table{
+    z-index: -1;
+}
+
+
+.triagem_table tr td{
+    border: 1px solid #gray;
+}
+
+.triagem_table thead td:first-child{
+    border: none;
+}
+.triagem_table i{
+    cursor: pointer;
+}
+
+.col_cliente thead, .col_aluno thead{
+    background: purple;
+    color: white;
+}
+
+.menu_cli select + label, .menu_cli input + label{
+    margin-left: 1.5em;
+
+}    
+
+.menu_cli #hrs{
+    width: 10%;
+}
+
+.triagem_table tbody td:nth-child(1) {
+    background: white;
+    border: white;
+    border: none; 
+}
+
+.triagem_table thead tr td:nth-child(1){
+    width: 1em;
+    background: white;
+
+}
+.triagem_table thead tr td:nth-child(2){
+    width: 24em;
+
+}
+
+.triagem_table thead tr td:nth-child(3){
+    width: 8em;
+}
+
+.triagem_table thead tr td:nth-child(4){
+    width: 19em;
+}
+
+.triagem_table thead tr td:nth-child(5){
+    width: 15em;
+}
+.triagem_table thead tr td:nth-child(6){
+    width: 5em;
+}
+
+.menu_cli input[type=search], .menu_alu input[type=search], .menu_alu select {
+    width: 20%;
+
+}
+.menu_alu input[type=search]{
+    margin-left: 38em;
+}
+
+.col_aluno{
+    margin-top: 2em;
+}
+
+.col_aluno, .col_cliente{
+    display: inline-block;
+    width: 98.2%;;
+    overflow: hidden;
+    height: 400px;
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: black 0.01em 0.1em 2.2em;
+
+}
+.btn_vinc{
+    float: right;
+    font-size: 1em;
+    height: 2em;
+    width: 8em;
+    margin-top: 1em; 
+}
+.triagem_table table{
+    width: 100%;
+}
+.triagem_table td select{
+    width: 100%;
+}
+
+.esconder{
+    width: 100%;
+    background: white;
+    height: 3em;
+    position: fixed;
+    margin-top: -5.3em;
+
+    border: 1px solid #white;
+    background-color: white;
+    box-shadow: white -1.01em .4em 1.1em 1.2em;
+    z-index: 0;
+
 }
