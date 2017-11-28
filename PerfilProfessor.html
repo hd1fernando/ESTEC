@@ -5,8 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Estec</title>
-
-
         <link href="css/perfilTest.css" rel="stylesheet">
         <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
         <script src="js/jquery-3.2.1.min.js"></script>
@@ -19,19 +17,19 @@
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
-                var value = window.location.href.substring(window.location.href.lastIndexOf('?') + 1);
-                value = value.split("+");
-
-                $(".NomeUser").html(value[2]);
-
-                $("#idProfessor").val(value[0]);
-                $("#loginUsuario").val(value[1]);
-                $("#nomeUsuario").val(value[2]);
-
-                $.ajax({
+				$.ajax({
+				type: "POST",
+				url: "login.php",
+				data: {functionName: "verificaSessao"},
+				success: function (data) {
+					if(data == "N") window.location.href = 'login.html';
+					else {
+						data = data.split("&");
+						$(".NomeUser").html(data[1]);
+						$.ajax({
                     type: "POST",
                     url: "turma.php",
-                    data: {functionName: "listaTurma", idProfessor: $("#idProfessor").val()},
+                    data: {functionName: "listaTurma", idProfessor: data[0]},
                     success: function (data) {
                         if (data[0] == "")
                             alert("Turma não encontrada.");
@@ -39,13 +37,18 @@
                             data = JSON.parse(data.split("&"));
                             for (var i = 0; i < data.length; i++) {
                                 var d = data[i].split(",");
-                                $("#tabelaTurma table").append("<tr value='" + d[0] + "'><td>" + d[1] + "</td></tr>");
+                                $("#tabelaTurma").append("<tr value='" + d[0] + "'><td>" + d[1] + "</td><td><a href='#'>Ver Alunos</a></td></tr>");
                             }
                         }
                     }
                 });
+					}
+				}
+			});
+				
+                
 
-                $("#tabelaTurma table").on('click', 'tr', function (e) {
+                $("#tabelaTurma").on('click', 'tr', function (e) {
                     e.preventDefault();
                     var idTurma = $(this).attr('value');
                     $.ajax({
@@ -53,14 +56,15 @@
                         url: "aluno.php",
                         data: {functionName: "listaAluno", idTurma: idTurma},
                         success: function (data) {
-                            if (data == "[]")
-                                alert("Não existem alunos cadastrados na turma selecionada.");
+							$("#tabelaAluno").html("");
+                            if (data == "[]"){
+								alert("Não existem alunos cadastrados na turma selecionada.");
+							}
                             else {
-                                $("#tabelaAluno table").html("");
                                 data = JSON.parse(data.split("&"));
                                 for (var i = 0; i < data.length; i++) {
                                     var d = data[i].split(",");
-                                    $("#tabelaAluno table").append("<tr value='" + d[0] + "'><td>" + d[1] + "</td></tr>");
+                                    $("#tabelaAluno").append("<tr value='" + d[0] + "'><td>" + d[1] + "</td></tr>");
                                 }
                             }
                         }
@@ -68,18 +72,15 @@
                 });
             });
         </script>
-
     </head>
     <body class="PPBody">
         <div class="top_bar">
             <i id="menu" class="fa fa-bars fa-2x btn_menu" aria-hidden="true" onclick="ola()"></i>
             <i class="fa fa-power-off fa-1x btn_sair" aria-hidden="true" onclick="logoff()" ></i>
-            <span id="Sair" onclick="logoff">Sair</span>
-
+            <span id="Sair" onclick="logout()">Sair</span>
         </div>
         <hr>
         <div class="acess">
-
             <ul class="menu">
                 <li><i class="fa fa-cogs fa-1x" aria-hidden="true"></i><a href="triagem.html">Triagem</a></li>
                 <li><i class="fa fa-graduation-cap fa-1x" aria-hidden="true"></i><a href="aluno.html#div_aluno">Aluno</a></li>
@@ -87,78 +88,49 @@
                 <li><i class="fa fa-user fa-1x" aria-hidden="true"></i><a href="aluno.html#div_cliente">Cliente</a></li>
                 <li><i class="fa fa-commenting fa-1x" aria-hidden="true"></i><a href="feedback.html">Feedback</a></li>
                 <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><a href="PerfilProfessor.html"> Calendario</a></li>
-                <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#"> Sair</a></li>
+                <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#" onclick="logout()">Sair</a></li>
             </ul>
         </div>
-
         <header>
             <img class="logo" src="img/logoEstec.png" alt="usuario" onclick="alterarImagem"/>
             <label>Estética e Tecnologia</label>
             <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
-
             <img class="FotoPerfil" src="img/SemFotoUsuario.png" alt="usuario" onclick="alterarImagem" />
-
-
             <h1 class="NomeUser">Nome</h1>
+			<input type="hidden" id="idProfessor"/>
+			<input type="hidden" id="loginUsuario"/>
+			<input type="hidden" id="nomeUsuario"/>
         </header>
-
         <main class="PPDefault">
             <div class="esconder"></div>
-
+			
             <div class="DefaultTurma">
                 <div class="NomeTabela">
                     <label>Turma</label>  					
                 </div>
 
                 <div class="TabelaNS">
-                    <table>
-                        <tr>
-                            <td>3</td>
-                        </tr>
-
-
+                    <table id="tabelaTurma">
                     </table>
                 </div>
             </div>
-
 
             <div class="DefaultCalendario">
                 <div class="NomeTabela">	
                     <label>Calendário</label>   		
                 </div>
-
                 <input class="calendar" type="date" name="Calend" id='Calend' value="">
-
-
-                <!-- *****JavaScript Set data no calendario ****** -->
-
-                <script language=javascript type="text/javascript">
-                    atual = new Date
-                    var mes = atual.getMonth() + 1
-                    var dataAtual = (atual.getFullYear() + "-" + mes + "-" + atual.getDate())
-                    document.getElementById('Calend').value = dataAtual
-                </script>
-
-                <!--  *********************************************** -->
-
             </div>
 
             <div class="DefaultNS">
                 <div class=" NomeTabela">
-                    <label>Clientes e Horários</label>
+                    <label>Alunos</label>
                 </div>   	
-
                 <div class="TabelaNS">
-                    <table>
-                        <tr>
-                            <td>thiago henrique da silva</td>
-                            <td id="td1">21:30</td>
-                        </tr>
-
+                    <table id="tabelaAluno">
                     </table>
                 </div>
             </div>
         </main>
-
     </body>
 </html>

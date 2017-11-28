@@ -9,7 +9,6 @@
         <link href="css/perfilTest.css" rel="stylesheet"/>
         <script src="js/estilos.js"></script>
         <script type="text/javascript">
-
             $(document).ready(function () {
                 $.ajax({
                     type: "POST",
@@ -27,11 +26,19 @@
             });
 
             $(document).ready(function () {
-                var idProfessor = 1;
+				$.ajax({
+				type: "POST",
+				url: "login.php",
+				data: {functionName: "verificaSessao"},
+				success: function (data) {
+					if(data == "N") window.location.href = 'login.html';
+					else {
+						data = data.split("&");
+						$(".NomeUser").html(data[1]);
                 $.ajax({
                     type: "POST",
                     url: "turma.php",
-                    data: {functionName: "opcaoTurma", idProfessor: idProfessor},
+                    data: {functionName: "opcaoTurma", idProfessor: data[0]},
                     success: function (data) {
                         data = JSON.parse(data.split("&"));
                         $("#op_turma").append(new Option("Todos", "T"));
@@ -41,6 +48,16 @@
                         }
                     }
                 });
+						
+					
+					}
+				}
+				
+				});
+				
+			
+			
+
             });
 
             $(document).ready(function () {
@@ -61,8 +78,16 @@
 
             function listaAtendimentoSemFeedBack() {
                 $(".feedback table tbody").html("");
-
-                var idServico = $('#op_servico').find(":selected").val();
+				$.ajax({
+				type: "POST",
+				url: "login.php",
+				data: {functionName: "verificaSessao"},
+				success: function (data) {
+					if(data == "N") window.location.href = 'login.html';
+					else {
+						data = data.split("&");
+						$(".NomeUser").html(data[1]);
+						var idServico = $('#op_servico').find(":selected").val();
                 var idTurma = $('#op_turma').find(":selected").val();
                 var idData = $('#op_data').find(":selected").val();
                 var nomeAluno = $('#nomeAluno').val();
@@ -77,7 +102,7 @@
                 $.ajax({
                     type: "POST",
                     url: "atendimento.php",
-                    data: {functionName: "listaAtendimentoSemFeedBack", idServico: idServico, idTurma: idTurma, idData: idData, nomeAluno: nomeAluno},
+                    data: {functionName: "listaAtendimentoSemFeedBack", idProfessor: data[0], idServico: idServico, idTurma: idTurma, idData: idData, nomeAluno: nomeAluno},
                     success: function (data) {
                         if (data[0] == "")
                             alert("Não foram encontrado atendimentos.");
@@ -90,6 +115,13 @@
                         }
                     }
                 });
+						
+						
+					}
+				}
+				});
+
+                
             }
         </script>
     </head>
@@ -97,7 +129,7 @@
         <div class="top_bar">
             <i id="#menu" class="fa fa-bars fa-2x btn_menu" aria-hidden="true" onclick="ola()"></i>
             <i class="fa fa-power-off fa-1x btn_sair" aria-hidden="true" onclick="logoff()" ></i>
-            <span id="Sair" onclick="logoff">Sair</span>
+            <span id="Sair" onclick="logout()">Sair</span>
 
         </div>
         <hr>
@@ -110,7 +142,7 @@
                 <li><i class="fa fa-user fa-1x" aria-hidden="true"></i><a href="aluno.html">Cliente</a></li>
                 <li><i class="fa fa-commenting fa-1x" aria-hidden="true"></i><a href="feedback.html">Feedback</a></li>
                 <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><a href="PerfilProfessor.html"> Calendario</a></li>
-                <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#"> Sair</a></li>
+                <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#" onclick="logout()"> Sair</a></li>
             </ul>
         </div>
 
@@ -118,52 +150,27 @@
             <img class="logo" src="img/logoEstec.png" alt="usuario" onclick="alterarImagem" />
             <label>Estética e Tecnologia</label>
             <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
-
             <img class="FotoPerfil" src="img/SemFotoUsuario.png" alt="usuario" onclick="alterarImagem" />
-
-
             <h1 class="NomeUser">Nome</h1>
-
         </header>
-
         <main class="PPDefault">
-
-
             <div class="body_feed">
                 <div class="pesquisar">
                     <label>Serviço: </label>
-
-                    <select>
-                        <option>TRATAMENTO FACIAL</option>
-                        <option> SOBRANCELHA</option>
-                        <option>MAQUIAGEM</option>
-                        <option>TRATAMENTO CORPORAL</option>
-                        <option> MASSAGENS RELAXANTES</option>
-                        <option> TRATAMENTO CAPILAR</option>
-                        <option>ESCOVA</option>
-                        <option>CORTE</option>
-                        <option>COLORAÇÃO</option>
-                        <option> MECHAS, LUZES, OMBRE HAIR...</option>
-                        <option>ALISAMENTO</option>
-                        <option selected>TODOS OS SERVIÇOS</option>
+                    <select id="op_servico">
                     </select>
 
                     <label>Turma: </label>
-
                     <select id="op_turma">
-                        <option selected>- - - - -</option>
-
                     </select>
-                    <label>Datas:</label>
-
-                    <select>
-                        <option> -- / -- / ----</option>
-                        <option>18/11/2017</option>
+					
+                    <label>Data:</label>
+                    <select id="op_data">
                     </select>
 
-                    <input type="search" placeholder="pesquisar por aluno ou cliente" size="25">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-
+                    <label>Aluno:</label>
+					<input id="nomeAluno" type="search" placeholder="Pesquisar por nome do aluno" size="30"/>
+                    <i class="fa fa-search" aria-hidden="true" onclick="listaAtendimentoSemFeedBack()"></i>
                 </div>
                 <div class="feedback">
                     <table>
@@ -177,20 +184,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>thiago henrique da silva souza</td>
-                                <td>mechas, luzes, ombre hair...</td>
-                                <td>thiago henrique da silva souza</td>
-                                <td>30/10/2017</td>
-                                <td>
-                                    <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
-                                    <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
-                                    <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
-                                    <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
-                                    <i class="fa fa-star-o star" aria-hidden="true" onmouseover="strela()"></i>
-                                </td>
-
-                            </tr>
                         </tbody>
                     </table>
                 </div>

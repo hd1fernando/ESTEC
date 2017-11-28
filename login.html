@@ -19,7 +19,6 @@
             }
         </style>
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> 
-
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#formLogin").submit(function () {
@@ -38,8 +37,21 @@
                                 if (dado[0] == "")
                                     alert("Usuário não encontrado.");
                                 else {
-                                    var url = 'PerfilProfessor.html';
-                                    window.location.href = url + "?" + dado[0] + "+" + dado[1] + "+" + dado[2];
+									var functionName = "realizaSessao";
+									var idProfessor = dado[0];
+									var nome = dado[1];
+									var usuario = dado[2];
+									var senha = dado[3];
+									$.ajax({
+										type: "POST",
+										url: "login.php",
+										data: {functionName: functionName, idProfessor: idProfessor, nome: nome, usuario: usuario, senha: senha},
+										success: function (dado) {
+											var url = 'PerfilProfessor.html';
+											window.location.href = url;
+										}
+									});
+                                    
                                 }
                             }
                         });

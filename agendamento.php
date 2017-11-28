@@ -10,11 +10,15 @@ switch ($_POST[functionName]) {
 	function opcaoAgendamento(){
 		include_once("$_SERVER[DOCUMENT_ROOT]/ESTEC/connection.php");
 		
-		$sql = "SELECT id_agendamento, DATE_FORMAT(data_agendamento, '%d/%m/%Y') AS 'dataAgendamento' FROM agendamento";
+		$sql = "SELECT
+				id_agendamento,
+				DATE_FORMAT(data_agendamento, '%d/%m/%Y') AS 'dataAgendamento',
+				TIME_FORMAT(agendamento.hora, '%H:%i') AS 'horaAgendamento'
+				FROM agendamento";
 		$res = mysqli_query($conn, $sql);
 		$result = array();
 		while($row = mysqli_fetch_assoc($res)){
-			$result[] = $row['id_agendamento']."&".$row['dataAgendamento'];
+			$result[] = $row['id_agendamento']."&".$row['dataAgendamento']."&".$row['horaAgendamento'];
 		}
 		mysqli_free_result($res);
 		mysqli_close($conn);
