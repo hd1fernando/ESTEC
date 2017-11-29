@@ -11,6 +11,9 @@ switch ($_POST['functionName']) {
 	case "listaQTDAlunoTurma":
 		echo listaQTDAlunoTurma();
         break;
+	case "listaAlunoProfessor":
+		echo listaAlunoProfessor();
+        break;
 }
 
 	function listaAluno(){
@@ -71,6 +74,42 @@ switch ($_POST['functionName']) {
 		$result = array();
 		while($row = mysqli_fetch_assoc($res)){
 			$result[] = $row['idTurma']."&".$row['nomeTurma']."&".$row['quantidade'];
+		}
+		mysqli_free_result($res);
+		mysqli_close($conn);
+		
+		$result = array_map('utf8_encode', $result);
+		
+		echo json_encode($result);
+	}
+	
+	function listaAlunoProfessor(){
+		include_once("$_SERVER[DOCUMENT_ROOT]/ESTEC/connection.php");
+
+		$idProfessor = $_POST['idProfessor'];
+		
+		$idTurma = $_POST['idTurma'];
+		$nomeAluno = $_POST['nomeAluno'];
+
+		if($idTurma <> "") $filtro .= " AND aluno.fk_turma = ".$idTurma."";
+		if($nomeAluno <> "") $filtro .= " AND UPPER(aluno.nome) LIKE UPPER('".$nomeAluno."%')"; 
+		
+		$sql = "SELECT
+				aluno.id_aluno AS 'idAluno',
+				aluno.nome AS 'nomeAluno',
+				aluno.telefone AS 'telefoneAluno',
+				aluno.email AS 'emailAluno',
+				turma.id_turma AS 'idTurma',
+				turma.nome_turma AS 'nomeTurma'
+				FROM aluno
+				LEFT JOIN turma ON aluno.fk_turma = turma.id_turma
+				LEFT JOIN professor_turma ON professor_turma.fk_turma = turma.id_turma
+				WHERE professor_turma.fk_professor = ".$idProfessor." ".$filtro."
+				ORDER BY turma.nome_turma, aluno.nome";
+		$res = mysqli_query($conn, $sql);
+		$result = array();
+		while($row = mysqli_fetch_assoc($res)){
+			$result[] = $row['idAluno']."&".$row['nomeAluno']."&".$row['telefoneAluno']."&".$row['emailAluno']."&".$row['idTurma']."&".$row['nomeTurma'];
 		}
 		mysqli_free_result($res);
 		mysqli_close($conn);

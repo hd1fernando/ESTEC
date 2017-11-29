@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><!-- pegar do bd--></title>
+        <title>Lista de Dados</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link type="text/CSS" rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/estilos.js"></script>
         <link type="text/CSS" rel="stylesheet" href="css/perfilTest.css"/>
-        <link type="text/CSS" rel="stylesheet" href="css/perfilTest.css"/>
         <style>
-
             .pop{
                 color: white;
                 background: white;
@@ -113,19 +111,26 @@
             #div_aluno:target, #div_cliente:target, #div_turma:target{
                 display: block;
             }
-
         </style>
         <script type="text/javascript">
-          
-
             function listaAlunoCliente() {
                 $(".tabelas #div_aluno table tbody").html("");
-                var idProfessor = 1;
-                $.ajax({
+				
+				$.ajax({
+				type: "POST",
+				url: "login.php",
+				data: {functionName: "verificaSessao"},
+				success: function (data) {
+					if(data == "N") window.location.href = 'login.html';
+					else {
+						data = data.split("&");
+						$(".NomeUser").html(data[1]);
+						                $.ajax({
                     type: "POST",
                     url: "aluno.php",
-                    data: {functionName: "listaAlunoCliente", idProfessor: idProfessor},
+                    data: {functionName: "listaAlunoCliente", idProfessor: data[0]},
                     success: function (data) {
+						
                         if (data[0] == "")
                             alert("Não foram encontrado alunos cadastrados.");
                         else {
@@ -137,6 +142,16 @@
                         }
                     }
                 });
+						
+						
+					}
+				
+				
+				}
+				});
+					
+					
+
             }
 
             function listaClienteAluno() {
@@ -160,12 +175,20 @@
             }
 
             function listaQTDAlunoTurma() {
-                $(".tabelas #div_turma table tbody").html("");
-                var idProfessor = 1;
-                $.ajax({
+				$(".tabelas #div_turma table tbody").html("");
+								$.ajax({
+				type: "POST",
+				url: "login.php",
+				data: {functionName: "verificaSessao"},
+				success: function (data) {
+					if(data == "N") window.location.href = 'login.html';
+					else {
+						data = data.split("&");
+						$(".NomeUser").html(data[1]);
+						                $.ajax({
                     type: "POST",
                     url: "aluno.php",
-                    data: {functionName: "listaQTDAlunoTurma", idProfessor: idProfessor},
+                    data: {functionName: "listaQTDAlunoTurma", idProfessor: data[0]},
                     success: function (data) {
                         if (data[0] == "")
                             alert("Não foram encontrado turmas cadastrados.");
@@ -178,8 +201,12 @@
                         }
                     }
                 });
+						
+						
+					}
+				}
+				});
             }
-
         </script>
 
     </head>
@@ -188,7 +215,7 @@
         <div class="top_bar">
             <i id="menu" class="fa fa-bars fa-2x btn_menu" aria-hidden="true" onclick="ola()"></i>
             <i class="fa fa-power-off fa-1x btn_sair" aria-hidden="true" onclick="logoff()" ></i>
-            <span id="Sair" onclick="logoff">Sair</span>
+            <span id="Sair" onclick="logout()">Sair</span>
 
         </div>
         <hr>
@@ -200,7 +227,7 @@
                 <li><i class="fa fa-user fa-1x" aria-hidden="true"></i><a href="aluno.html#div_cliente">Cliente</a></li>
                 <li><i class="fa fa-commenting fa-1x" aria-hidden="true"></i><a href="feedback.html">Feedback</a></li>
                 <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><a href="PerfilProfessor.html"> Calendario</a></li>
-                <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#"> Sair</a></li>
+                <li><i class="fa fa-power-off fa-1x" aria-hidden="true"></i><a href="#" onclick="logout()"> Sair</a></li>
             </ul>      
         </div>
 
@@ -208,10 +235,7 @@
             <img class="logo" src="img/logoEstec.png" alt="usuario" onclick="alterarImagem" />
             <label>Estética e Tecnologia</label>
             <div class="EstecLogo" dir="auto" role="heading" >ESTEC</div>
-
             <img class="FotoPerfil" src="img/SemFotoUsuario.png" alt="usuario" onclick="alterarImagem" />
-
-
             <h1 class="NomeUser">Nome</h1>
         </header>
 
@@ -220,50 +244,27 @@
 
             <div class="tabelas">
                 <div class="nav_barra">
-                    <a id="btn_aluno" class="btn"  href="#div_aluno" onclick="show('#btn_aluno', '#btn_cliente', '#btn_turma')" >Aluno</a>
-                    <a id="btn_cliente" class="btn" href="#div_cliente" onclick="show('#btn_cliente', '#btn_aluno', '#btn_turma')">Cliente</a>
-                    <a id="btn_turma" class="btn" href="#div_turma" onclick="show('#btn_turma', '#btn_aluno', '#btn_cliente')">Turma</a>
+                    <a id="btn_aluno" class="btn"  href="#div_aluno" onclick="show('#btn_aluno', '#btn_cliente', '#btn_turma'), listaAlunoCliente()" >Aluno</a>
+                    <a id="btn_cliente" class="btn" href="#div_cliente" onclick="show('#btn_cliente', '#btn_aluno', '#btn_turma'), listaClienteAluno()">Cliente</a>
+                    <a id="btn_turma" class="btn" href="#div_turma" onclick="show('#btn_turma', '#btn_aluno', '#btn_cliente'), listaQTDAlunoTurma()">Turma</a>
                     <input type="search" id="pesquisa" placeholder="pesquisar por aluno">
                     <i class="fa fa-search fa-1x" id="btn_search" onclick="pesquisar()" aria-hidden="true"></i>
-
                 </div>
                 <div id="div_aluno" class="div_user">
+				<script type="text/javascript">
+					listaAlunoCliente();
+				</script>
                     <table class="tabela_aluno">
                         <thead class="thead" >
                             <tr>
                                 <td>Nome</td>
+								<td>Telefone</td>
+								<td>Email</td>
                                 <td>Turma</td>
-                                <td>Contato</td>
                                 <td>Cliente</td>
-
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Fernando</td>
-                                <td>fer</td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <i class="fa fa-user-times" aria-hidden="true" id="btn_del"  onclick="delete_aluno()"></i>
-                                </td>
-                                <td>
-                                    <i class="fa fa-pencil" aria-hidden="true" id="btn_edit" onclick="editar_aluno()"></i>
-                                </td> 
-
-                            <tr>
-                                <td>Fernando</td>
-                                <td>fer</td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <i class="fa fa-user-times" aria-hidden="true" id="btn_del" onclick="delete_aluno()"></i>
-                                </td>
-                                <td>
-                                    <i class="fa fa-pencil" aria-hidden="true" id="btn_edit" onclick="editar_aluno()"></i>
-                                </td>
-
-                            </tr>
                         </tbody>
                     </table>
 
@@ -273,28 +274,20 @@
                 </div>
 
                 <div id="div_cliente" class="div_user">
+				<script type="text/javascript">
+					listaClienteAluno();
+				</script>
                     <table class="tabela_cliente">
                         <thead class="thead" >
                             <tr>
                                 <td>Nome</td>
-                                <td>Contato</td>
+								<td>Telefone</td>
+								<td>Email</td>
+                                <td>Endereço</td>
                                 <td>Aluno</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Fernando</td>
-                                <td></td>
-                                <td ></td>
-
-                                <td class="size_conserto">
-                                    <i class="fa fa-user-times" aria-hidden="true" id="btn_del" onclick="delete_cliente()"></i>
-                                </td>
-                                <td class="size_conserto">
-                                    <i class="fa fa-pencil" aria-hidden="true" id="btn_edit" onclick="editar_cliente()"></i>
-                                </td>
-
-                            </tr>
                         </tbody>
                     </table>
                     <div class="options">
@@ -303,7 +296,10 @@
                 </div>
 
                 <div id="div_turma" class="div_user">
-                    <table class="tabela_turma">
+				<script type="text/javascript">
+					listaQTDAlunoTurma();
+				</script>
+				<table class="tabela_turma">
                         <thead class="thead" >
                             <tr>
                                 <td>Nome</td>
@@ -311,40 +307,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>SBPN02/2017</td>
-                                <td></td>
-                                <td>
-
-                                    <i class="fa fa-users fa-1x" aria-hidden="true" id="btn_del"></i>
-                                    <i class="x" aria-hidden="true">x</i>
-
-
-                                </td>
-                                <td>
-                                    <i class="fa fa-pencil" aria-hidden="true" id="btn_edit" 
-                                       onclick="editar_turma()"></i>
-
-                            </tr>
                         </tbody>
                     </table>
-
-
-
                     <input type="file" id="btn_add_turma" name="btn_add_turma">
                     <label id="msg_import">Adicionar turma: importe a lista de alunos</label>
-
-
-
-
-
-
                 </div>
             </div>
         </main>
-
-
-
+		
         <form class="pop" id="pop">
             <a href="#" onclick="document.getElementById('pop').style.display = 'none';"><i class="fa fa-times close_pop" aria-hidden="true"></i>
             </a>  <br />
@@ -368,15 +338,8 @@
                     <input type="text" id="addemail_aluno"/>
 
                     <i class="fa fa-check fa-2x confirmar" id="confirmar" aria-hidden="true"></i>
-
-
-
                 </div>
-
             </div>
         </form>
-
-
-
     </body>
 </html>
