@@ -27,7 +27,7 @@ form.Formulario {
 
 .FundoFormulario{
 
-	background: url(fundo.jpg);
+	background: url(../img/fundo.jpg);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;

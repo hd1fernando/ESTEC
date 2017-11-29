@@ -1,84 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Estec</title>
-        <link href="css/test.css" rel="stylesheet"/>
-        <style type="text/css">
-            a:link, a:visited {
-                text-decoration: none
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Estec</title>
+    <link href="css/test.css" rel="stylesheet"/>
+    <style type="text/css">
+    a:link, a:visited {
+        text-decoration: none
+    }
+    a:hover {
+        text-decoration: underline; 
+        color: #f00;
+    }
+    a:active {
+        text-decoration: none
+    }
+</style>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#formLogin").submit(function () {
+            var usuario = document.getElementById("usuario").value;
+            var password = document.getElementById("password").value;
+            var functionName = "realizaLogin";
+            if (usuario == "" || password == "") {
+                alert("Campo usuário e senha são obrigatórios.");
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "login.php",
+                    data: {functionName: functionName, usuario: usuario, password: password},
+                    success: function (dado) {
+                        dado = dado.split("&");
+                        if (dado[0] == "")
+                            alert("Usuário não encontrado.");
+                        else {
+                           var functionName = "realizaSessao";
+                           var idProfessor = dado[0];
+                           var nome = dado[1];
+                           var usuario = dado[2];
+                           var senha = dado[3];
+                           $.ajax({
+                              type: "POST",
+                              url: "login.php",
+                              data: {functionName: functionName, idProfessor: idProfessor, nome: nome, usuario: usuario, senha: senha},
+                              success: function (dado) {
+                                 var url = 'PerfilProfessor.html';
+                                 window.location.href = url;
+                             }
+                         });
+                           
+                       }
+                   }
+               });
+                return false;
             }
-            a:hover {
-                text-decoration: underline; 
-                color: #f00;
-            }
-            a:active {
-                text-decoration: none
-            }
-        </style>
-        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#formLogin").submit(function () {
-                    var usuario = document.getElementById("usuario").value;
-                    var password = document.getElementById("password").value;
-                    var functionName = "realizaLogin";
-                    if (usuario == "" || password == "") {
-                        alert("Campo usuário e senha são obrigatórios.");
-                    } else {
-                        $.ajax({
-                            type: "POST",
-                            url: "login.php",
-                            data: {functionName: functionName, usuario: usuario, password: password},
-                            success: function (dado) {
-                                dado = dado.split("&");
-                                if (dado[0] == "")
-                                    alert("Usuário não encontrado.");
-                                else {
-									var functionName = "realizaSessao";
-									var idProfessor = dado[0];
-									var nome = dado[1];
-									var usuario = dado[2];
-									var senha = dado[3];
-									$.ajax({
-										type: "POST",
-										url: "login.php",
-										data: {functionName: functionName, idProfessor: idProfessor, nome: nome, usuario: usuario, senha: senha},
-										success: function (dado) {
-											var url = 'PerfilProfessor.html';
-											window.location.href = url;
-										}
-									});
-                                    
-                                }
-                            }
-                        });
-                        return false;
-                    }
-                });
-            });
-        </script>
-    </head>
-    <body>
-        <main class="MainLogin">
-            <form id="formLogin" class="Login" action="" method="post">
-                <div class="LoginProfessor">
-                    <div>
-                        <label for="usuario">Usuário:</label>
-                        <input type="text" id="usuario" />
-                    </div>
-                    <div>
-                        <label for="password">Senha:</label>
-                        <input type="password" id="password" />
-                    </div>
-                    <a href="#">Recuperar sua senha</a>
-                    <div class="ButtonEntrar">
-                        <button type="submit" id="idbotaoEntrar" name="botaoEntrar">Entrar</button>
-                    </div>
+        });
+    });
+</script>
+</head>
+<body class="FundoFormulario">
+    <main class="MainLogin">
+        <form id="formLogin" class="Login" action="" method="post">
+            <div class="LoginProfessor">
+                <div>
+                    <label for="usuario">Usuário:</label>
+                    <input type="text" id="usuario" />
                 </div>
-            </form>
-        </main>
-    </body>
+                <div>
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" />
+                </div>
+                <a href="#">Recuperar sua senha</a>
+                <div class="ButtonEntrar">
+                    <button type="submit" id="idbotaoEntrar" name="botaoEntrar">Entrar</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
 </html>

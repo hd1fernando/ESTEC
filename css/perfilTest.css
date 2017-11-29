@@ -396,8 +396,8 @@ input:focus {
 
 #pesquisa{
     float: left;
-    margin-left: 28.5em;
-    margin-top: -.3em;
+    margin-left: 47.5em;
+    margin-top: -1.9em;
     text-align: left;
     color: black;
     font-weight: normal; 
@@ -407,7 +407,7 @@ input:focus {
 
 #btn_search{
     cursor: pointer;
-
+    z-index: 10;
 }
 
 .div_user{
